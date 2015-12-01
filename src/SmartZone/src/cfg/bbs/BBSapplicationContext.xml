@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd	 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	
+	 <bean id="PostDAO" class="com.smartzone.bbs.dao.imp.PostDAOImp">
+	 	<property name="sessionFactory">
+	 		<ref bean="sessionFactory" />
+	 	</property>
+	 </bean>
+	 <bean id="PostBiz" class="com.smartzone.bbs.biz.imp.PostBizImp">
+	 	<property name="postdao">
+	 		<ref bean="PostDAO" />
+	 	</property>
+	 	<property name="defalutPageSize" value="10"></property>
+	 </bean>
+	 <bean id="PostAction" class="com.smartzone.bbs.action.PostAction" scope="prototype">
+	 	<property name="postbiz">
+	 		<ref bean="PostBiz" />
+	 	</property>
+	 	<property name="boardBiz">
+	 		<ref bean="BoardBiz" />
+	 	</property>
+	 </bean>
+	 
+	 <bean id="BmDAO" class="com.smartzone.bbs.dao.imp.BmDAOImp">
+	 	<property name="sessionFactory">
+	 		<ref bean="sessionFactory" />
+	 	</property>
+	 </bean>
+	 
+	 <bean id="BoardDAO" class="com.smartzone.bbs.dao.imp.BoardDAOImp">
+	 	<property name="sessionFactory">
+	 		<ref bean="sessionFactory" />
+	 	</property>
+	 </bean>
+	 <bean id="BoardBiz" class="com.smartzone.bbs.biz.imp.BoardBizImp">
+	 	<property name="boarddao">
+	 		<ref bean="BoardDAO" />
+	 	</property>
+	 </bean>
+	 <bean id="BoardAction" class="com.smartzone.bbs.action.BoardAction" scope="prototype">
+	 	<property name="boardbiz">
+	 		<ref bean="BoardBiz"/>
+	 	</property>
+	 </bean>
+	 
+	 <bean id="bbsReplyDAO" class="com.smartzone.bbs.dao.imp.ReplyDAOImp">
+	 	<property name="sessionFactory">
+	 		<ref bean="sessionFactory" />
+	 	</property>
+	 </bean>
+	 <bean id="bbsReplyBiz" class="com.smartzone.bbs.biz.imp.ReplyBizImp">
+	 	<property name="replydao">
+	 		<ref bean="bbsReplyDAO"/>
+	 	</property>
+	 </bean>
+	 <bean id="bbsReplyAction" class="com.smartzone.bbs.action.ReplyAction" scope="prototype">
+	 	<property name="replybiz">
+	 		<ref bean="bbsReplyBiz"/>
+	 	</property>
+	 	<property name="postbiz">
+	 		<ref bean="PostBiz"/>
+	 	</property>
+	 </bean>
+	 
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+	<table name="shop_imgs" catalog="smartzone_store"
+		class="com.smartzone.store.entity.ShopImg">
+		<primary-key>
+			<generator class="foreign"></generator>
+		</primary-key>
+	</table>
+	<table name="tags" catalog="smartzone_store"
+		class="com.smartzone.store.entity.Tag">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="goods" catalog="smartzone_store"
+		class="com.smartzone.store.entity.Good">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="category" catalog="smartzone_store"
+		class="com.smartzone.store.entity.Category">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="good_imgs" catalog="smartzone_store"
+		class="com.smartzone.store.entity.GoodImg">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="orders" catalog="smartzone_store"
+		class="com.smartzone.store.entity.Order">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="item" catalog="smartzone_store"
+	class="com.smartzone.store.entity.Item">
+	<primary-key>
+		<generator class="native"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="feedback.ftitle">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>事项不能为空</message>
+		</field-validator>
+	</field>
+	<field name="feedback.fcontent">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>内容不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">1000</param>
+			<message>内容长度不要超过${maxLength}</message>
+		</field-validator>
+	</field>
+</validators>

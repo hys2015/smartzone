@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" extends="default,logincheck" namespace="/">
+	
+		<action name="index" class="indexAction" method="index">
+			<result>/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="login" class="adminAction" method="login">
+			<result name="input">login.jsp</result>
+			<result name="success" type="redirect">show</result>
+		</action>
+		<action name="regAdmin" class="adminAction" method="register">
+			<result name="input">admin/addAdmin.jsp</result>
+			<result name="success">admin/addAdmin.jsp</result>
+		</action>
+		<action name="logout" class="adminAction" method="logout">
+			<result type="redirect">index.action</result>
+		</action>
+		<action name="adminDetail" class="adminAction" method="detail">
+			<result>admin/detail.jsp</result>
+		</action>
+		<action name="updateAdmin" class="adminAction" method="update">
+			<result name="input">admin/detail.jsp</result>
+			<result>admin/detail.jsp</result>
+		</action>
+		<action name="toAddAdmin">
+			<result>admin/addAdmin.jsp</result>
+		</action>
+		<action name="show" class="adminAction" method="show">
+			<result>admin/list.jsp</result>
+		</action>
+		<action name="roleChange" class="adminAction" method="roleChange">
+			<result type="redirect">show</result>
+		</action>
+	</package>
+	
+	
+	<package name="user" namespace="/user" extends="default,breadcrumb">
+	
+		<default-class-ref class="userAction"></default-class-ref>
+	
+		<action name="index">
+			<result type="redirect">detail</result>
+		</action>
+	
+		<action name="login" class="userAction" method="login">
+			<result name="input">/login.jsp</result>
+			<result type="redirect">../index</result>
+		</action>
+		<action name="logout" class="userAction" method="logout">
+			<result type="redirect">../index</result>
+		</action>
+		<action name="detail" class="userAction" method="detail">
+			<result>detail.jsp</result>
+		</action>
+		<action name="toUpdate" class="userAction" method="toUpdate">
+			<interceptor-ref name="checkStack"></interceptor-ref>
+			<result>user.jsp</result>
+		</action>
+		<action name="update" class="userAction" method="update">
+			<result name="input">user.jsp</result>
+			<result type="redirect">detail</result>
+		</action>
+		<action name="toUpload">
+			<interceptor-ref name="checkStack"></interceptor-ref>
+			<result type="redirect">uploadIcon.jsp</result>
+		</action>
+	</package>
+	
+	<package name="upload" namespace="/user" extends="user">
+		<action name="uploadIcon" class="fileUploadAction">
+			<result name="input">uploadIcon.jsp</result>
+			<result type="redirect">toUpdate</result>
+		</action>
+	</package>
+	
+	<package name="fee" namespace="/fee" extends="default,logincheck">
+		<action name="index">
+			<result type="redirect">/fee/feeCenter</result>
+		</action>
+		<action name="feeCenter" class="feeAction" method="fee">
+			<result>/fee/feeCenter.jsp</result>
+		</action>
+		<action name="toPay" class="feeAction" method="toPay">
+			<result>payconfirm.jsp</result>
+		</action>
+	</package>
+	
+	<package name="carport" namespace="/fee/carport" extends="fee">
+		<action name="show" class="carportAction" method="show">
+			<result>list.jsp</result>
+		</action>
+		<action name="add" class="carportAction" method="add">
+			<result type="redirect">show</result>
+		</action>
+		<action name="update" class="carportAction" method="update">
+			<result type="redirect">show</result>
+		</action>
+		<action name="toBind" class="carportAction" method="toBindPort">
+			<result>userlist.jsp</result>
+		</action>
+		<action name="toUnbind" class="carportAction" method="toUnbindPort">
+			<result>userlist.jsp</result>
+		</action>
+		<action name="bindOrUnbind" class="carportAction" method="bindOrUnbind">
+			<result type="redirect">index</result>
+		</action>
+		<action name="delete" class="carportAction" method="delete">
+			<result type="redirect">show</result>
+		</action>
+	</package>
+	
+	<package name="carbill" namespace="/fee/carport/carbill" extends="carport">
+		<action name="index">
+			<result type="redirect">userCarbill</result>
+		</action>
+		<action name="tobill" class="carbillAction" method="tobill">
+			<result>carbill.jsp</result>			
+		</action> 
+		<action name="addCarbill" class="carbillAction" method="addcarbill">
+			<result type="redirect">userCarbill</result>
+		</action>
+		<action name="userCarbill" class="carbillAction" method="usercarbill">
+			<result>userbill.jsp</result>
+		</action>
+		<action name="payCarbill" class="carbillAction" method="payCarbill">
+			<result type="redirect">userCarbill</result>
+		</action>
+		<action name="adminShow" class="carbillAction" method="adminShow">
+			<result>adminlist.jsp</result>
+		</action>
+	</package>
+	
+	<package name="condofee" namespace="/fee/condofee" extends="fee">
+		<action name="adminShow" class="condofeeAction" method="adminShow">
+			<result>adminlist.jsp</result>
+		</action>
+		<action name="saveFee" class="condofeeAction" method="saveFee">
+			<result type="redirect">adminShow</result>
+		</action>
+		<action name="payCondobill" class="condofeeAction" method="pay">
+			<result type="redirect">
+				<param name="namespace">/fee</param>
+				<param name="location">index</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	<package name="notice" namespace="/notice" extends="default,logincheck">
+		<action name="index">
+			<result type="redirect">noticeCenter.action</result>
+		</action> 
+		<action name="toAdd" class="seriesAction" method="toAdd">
+			<result>notice.jsp</result>
+		</action>
+		<action name="toUpdate" class="noticeAction" method="toUpdate">
+			<result>notice.jsp</result>
+		</action>
+		<action name="update" class="noticeAction" method="update">
+			<result name="input" type="chain">toUpdate?notice.tid=${notice.tid}</result>
+			<result type="redirect">index</result>
+		</action>
+		<action name="showNotice" class="noticeAction" method="show">
+			<result name="success">noticeList.jsp</result>
+		</action>
+		<action name="addNotice" class="noticeAction" method="add">
+			<result name="input">notice.jsp</result>
+			<result name="success" type="redirect">index</result>
+		</action>
+		<action name="noticeDetail" class="noticeAction" method="getNoticeByTid">
+			<result name="input">showNotice.action</result>
+			<result name="success">details.jsp</result>
+		</action>
+		<action name="topNotice" class="noticeAction" method="topNotice">
+			<result name="input" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+			<result name="success" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+		</action>
+		<action name="resetNotice" class="noticeAction" method="reset">
+			<result name="input" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+			<result name="success" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+		</action>
+		<action name="cancelNotice" class="noticeAction" method="cancelNotice">
+			<result name="input" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+			<result name="success" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+		</action>
+		<action name="deleteNotice" class="noticeAction" method="deleteNotice">
+			<result name="input" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+			<result name="success" type="redirect">showNotice.action?seriesId=${seriesId}</result>
+		</action>
+		<action name="search" class="noticeAction" method="search">
+			<result name="input" type="chain">showNotice</result>
+			<result name="success">noticeList.jsp</result>
+		</action>
+		<action name="noticeCenter" class="seriesAction" method="getAll">
+			<result name="success">noticeCenter.jsp</result>
+		</action>
+		<action name="toAddSeries" class="seriesAction" method="toAdd">
+			<result name="success">series.jsp</result>
+		</action>
+		<action name="addSeries" class="seriesAction" method="add">
+			<result name="success" type="redirect">toAddSeries</result>
+			<result name="input" type="redirect">toAddSeries</result>
+		</action>
+		<action name="deleteSeries" class="seriesAction" method="delete">
+			<result name="success" type="redirect">toAddSeries</result>
+		</action>
+		<action name="updateSeries" class="seriesAction" method="update">
+			<result name="input" type="chain">toAddSeries</result>
+			<result name="success" type="redirect">toAddSeries</result>
+		</action>
+		<action name="seriesPane" class="seriesAction" method="seriesPane">
+			<result name="success">seriesPane.jsp</result>
+		</action>
+	</package> 
+	
+	
+	<package name="repair" namespace="/repair" extends="default,logincheck">
+		<action name="index">
+			<result type="redirect">show.action</result>
+		</action> 
+		
+		<action name="toUpdate" class="repairAction" method="toUpdate">
+			<result>repair.jsp</result>
+		</action>
+		<action name="toAdd">
+			<result>repair.jsp</result>
+		</action> 
+		<action name="add" class="repairAction" method="add">
+			<result name="input">repair.jsp</result>
+			<result type="redirect">show.action</result>
+		</action>
+		<action name="show" class="repairAction" method="show">
+			<result>list.jsp</result>
+		</action>
+		<action name="showAll" class="repairAction" method="showAll">
+			<result>list.jsp</result>
+		</action>
+		<action name="changeState" class="repairAction" method="changeState">
+			<result type="redirect">detail.action?repair.rno=${repair.rno}</result>
+		</action>
+		<action name="detail" class="repairAction" method="detail">
+			<result>detail.jsp</result>
+		</action>
+		<action name="delete" class="repairAction" method="delete">
+			<result name="admin" type="redirect">showAll.action</result>
+			<result name="user" type="redirect">show.action</result>
+		</action>
+	</package>
+	
+	
+	<package name="feedback" namespace="/feedback" extends="default,logincheck">
+		<action name="index">
+			<result type="redirect">show.action</result>
+		</action> 
+		<action name="toAdd">
+			<result>feedback.jsp</result>
+		</action>
+		<action name="toReply" class="feedbackAction" method="toReply">
+			<result name="input" type="redirect">show.jsp</result>
+			<result type="dispatcher">reply.jsp</result>
+		</action>
+		<action name="toUpdate" class="feedbackAction" method="toUpdate">
+			<result>feedback.jsp</result>
+		</action>
+		
+		<action name="add" class="feedbackAction" method="add">
+			<result name="input">feedback.jsp</result>
+			<result type="redirect">show.action</result>
+		</action>
+		<action name="show" class="feedbackAction" method="show">
+			<result>show.jsp</result>
+		</action>
+		<action name="reply" class="feedbackAction" method="reply">
+			<result type="redirect">show.action</result>
+		</action>
+		<action name="myFeedback" class="feedbackAction" method="myFeedback">
+			<result>show.jsp</result>
+		</action>
+		<action name="delete" class="feedbackAction" method="delete">
+			<result type="redirect">show.action</result>
+		</action>
+	</package>
+	
+	
+	<package name="reply"  namespace="/reply" extends="default,logincheck">
+		<action name="delete" class="replyAction" method="delete">
+			<result type="redirect">../feedback/${url}.action</result>
+		</action>
+		<action name="toUpdate" class="replyAction" method="toUpdate">
+			<result>../feedback/reply.jsp</result>
+		</action>
+		<action name="update" class="replyAction" method="update">
+			<result type="redirect">../feedback/${url}.action</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="admin" catalog="smartzone"
+		class="com.smartzone.info.entity.Administor">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="notices" catalog="smartzone"
+		class="com.smartzone.info.entity.Notice">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+		<column name="createtime"></column>
+		<column name="communityno"></column>
+	</table>
+	<table name="repairs" catalog="smartzone"
+		class="com.smartzone.info.entity.Repair">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="users" catalog="smartzone"
+		class="com.smartzone.info.entity.User">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="communities" catalog="smartzone"
+		class="com.smartzone.info.entity.Community">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="companys" catalog="smartzone"
+		class="com.smartzone.info.entity.Company">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="feedbacks" catalog="smartzone"
+		class="com.smartzone.info.entity.Feedback">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="replies" catalog="smartzone"
+		class="com.smartzone.info.entity.ReplyToFeed">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="bbs_bm" catalog="smartzone"
+		class="com.smartzone.bbs.entity.Bm">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="bbs_borad" catalog="smartzone"
+		class="com.smartzone.bbs.entity.Board">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="bbs_post" catalog="smartzone"
+		class="com.smartzone.bbs.entity.Post">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="bbs_reply" catalog="smartzone"
+		class="com.smartzone.bbs.entity.Reply">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="bbs_board" catalog="smartzone"
+		class="com.smartzone.bbs.entity.Board">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="notice_series" catalog="smartzone"
+		class="com.smartzone.info.entity.Series">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="carports" catalog="smartzone"
+		class="com.smartzone.info.entity.CarPort">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="carbill" catalog="smartzone"
+		class="com.smartzone.info.entity.Carbill">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="condobill" catalog="smartzone"
+		class="com.smartzone.info.entity.Condobill">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="condofee" catalog="smartzone"
+	class="com.smartzone.info.entity.Condofee">
+	<primary-key>
+		<generator class="assigned"></generator>
+	</primary-key>
+</table>
+<table name="shops" catalog="smartzone_store"
+	class="com.smartzone.store.dao.imp.Shop">
+	<primary-key>
+		<generator class="native"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

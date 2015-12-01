@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd	 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- action
+	 -->
+	<bean id="commentAction" class="com.smartzone.store.action.CommentAction" scope="prototype">
+		<property name="commentBiz">
+			<ref bean="CommentBiz"/>
+		</property>
+	</bean>
+	<bean id="payAction" class="com.smartzone.store.pay.PayAction" scope="prototype">
+		<property name="orderBiz">
+			<ref bean="OrderBiz"/>
+		</property>
+	</bean>
+	<bean id="recaddrAction" class="com.smartzone.store.action.RecaddrAction" scope="prototype">
+		<property name="recaddrBiz">
+			<ref bean="RecaddrBiz"/>
+		</property>
+	</bean>
+	<bean id="orderAction" class="com.smartzone.store.action.OrderAction" scope="prototype">
+		<property name="recaddrBiz">
+			<ref bean="RecaddrBiz"/>
+		</property>
+		<property name="goodBiz">
+			<ref bean="GoodBiz"/>
+		</property>
+		<property name="orderBiz">
+			<ref bean="OrderBiz"/>
+		</property>
+	</bean>
+	<bean id="cartAction" class="com.smartzone.store.action.CartAction" scope="prototype">
+		<property name="goodBiz">
+			<ref bean="GoodBiz"/>
+		</property>
+	</bean>
+	<bean id="goodAction" class="com.smartzone.store.action.GoodAction" scope="prototype">
+		<property name="goodBiz">
+			<ref bean="GoodBiz"/>
+		</property>
+		<property name="categoryBiz">
+			<ref bean="CategoryBiz"/>
+		</property>
+		<property name="shopBiz">
+			<ref bean="ShopBiz"/>
+		</property>
+		<property name="commentBiz">
+			<ref bean="CommentBiz"/>
+		</property>
+	</bean>
+
+	<bean id="shopAction" class="com.smartzone.store.action.ShopAction" scope="prototype">
+		<property name="shopBiz">
+			<ref bean="ShopBiz"/>
+		</property>
+		<property name="tagBiz">
+			<ref bean="TagBiz"/>
+		</property>
+	</bean>
+	<bean id="uploadAction" class="com.smartzone.store.action.UploadAction" scope="prototype">
+		<property name="shopBiz">
+			<ref bean="ShopBiz"/>
+		</property>
+	</bean>
+	
+	
+	<!-- line 
+	  new bean
+		/\
+	   /||\
+		||
+		||
+	  old bean
+	-->
+	<bean id="CommentDAO"
+		class="com.smartzone.store.dao.imp.CommentDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CommentBiz"
+		class="com.smartzone.store.biz.imp.CommentBizImp">
+		<property name="commentDAO">
+			<ref bean="CommentDAO" />
+		</property>
+	</bean>
+	
+	<bean id="RecaddrDAO"
+		class="com.smartzone.store.dao.imp.RecaddrDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RecaddrBiz"
+		class="com.smartzone.store.biz.imp.RecaddrBizImp">
+		<property name="recaddrDAO">
+			<ref bean="RecaddrDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ItemDAO" class="com.smartzone.store.dao.imp.ItemDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrderDAO" class="com.smartzone.store.dao.imp.OrderDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrderBiz" class="com.smartzone.store.biz.imp.OrderBizImp">
+		<property name="orderDAO">
+			<ref bean="OrderDAO" />
+		</property>
+		<property name="goodDAO">
+			<ref bean="GoodDAO" />
+		</property>
+	</bean>
+	
+	<bean id="CategoryDAO"
+		class="com.smartzone.store.dao.imp.CategoryDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CategoryBiz"
+		class="com.smartzone.store.biz.imp.CategoryBizImp">
+		<property name="categoryDAO">
+			<ref bean="CategoryDAO" />
+		</property>
+	</bean>
+	<bean id="GoodDAO" class="com.smartzone.store.dao.imp.GoodDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GoodBiz" class="com.smartzone.store.biz.imp.GoodBizImp">
+		<property name="goodDAO">
+			<ref bean="GoodDAO" />
+		</property>
+	</bean>
+	
+	<bean id="TagDAO" class="com.smartzone.store.dao.imp.TagDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TagBiz" class="com.smartzone.store.biz.imp.TagBizImp">
+		<property name="tagDAO">
+			<ref bean="TagDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ShopDAO" class="com.smartzone.store.dao.imp.ShopDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	 <bean id="ShopBiz" class="com.smartzone.store.biz.imp.ShopBizImp">
+		<property name="shopDAO">
+			<ref bean="ShopDAO" />
+		</property>
+	</bean>
+	 
+</beans>

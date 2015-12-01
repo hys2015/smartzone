@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="admin.adminName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请输入用户名</message>
+		</field-validator>
+	</field>
+	<field name="admin.adminPwd">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请输入旧密码</message>
+		</field-validator>
+	</field>
+	<field name="newPwd">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请输入新密码</message>
+		</field-validator>
+	</field>
+	<field name="checkPwd">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请再次输入新密码</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">10</param>
+			<param name="minLength">4</param>
+			<message>新密码长度要保持在${minLength}和${maxLength}之间</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression">checkPwd==newPwd</param>
+			<message>请确保两次输入的新密码相同</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression">admin.adminPwd!=newPwd</param>
+			<message>旧密码和新密码不要相同</message>
+		</field-validator>
+	</field>
+</validators>
