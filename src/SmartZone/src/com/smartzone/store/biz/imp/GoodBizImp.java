@@ -63,6 +63,11 @@ public class GoodBizImp implements GoodBiz {
 	}
 
 	@Override
+	public List findVisibleByCategory(Integer cid) {
+		return goodDAO.findVisibleByProperty("category.cid", cid);
+	}
+
+	@Override
 	public void onShelf(Good good) {
 		good.setVisible(Good.VISIBLE);
 		good.setOnshelftime(new Timestamp(System.currentTimeMillis()));

@@ -69,15 +69,10 @@
 	</label>
 	<div class="list-group">
 		<s:iterator value="#request.categorys">
-			<li class="list-group-item">
-				<s:a action="showCategory" namespace="/store/goods">
-					<s:param name="category.cid" value="cid"></s:param>					
-					<s:property value="cname"/>
-				</s:a>
-				<span class="badge">
-					<s:property value="goods.size"/>件商品
-				</span>
-			</li>
+			<s:a cssClass="list-group-item" action="showCategory" namespace="/store/goods">
+				<s:param name="category.cid" value="cid"></s:param>					
+				<s:property value="cname"/>
+			</s:a>
 		</s:iterator>
 	</div> 
 </div>

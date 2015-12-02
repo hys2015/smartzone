@@ -73,6 +73,11 @@ public class ShopAction extends ActionSupport implements RequestAware,
 			addActionError("请把必填的项目填写上");
 			return INPUT;
 		}
+		if(shop.getSid() != null){
+			Shop check = shopBiz.findById(shop);
+			shop.setImgs(check.getImgs());
+			shop.setTags(check.getTags());
+		}
 		User u = (User) LoginCheckData.getInstance(session).getObj();
 		shop.setUser(u);
 		shopBiz.add(shop);
@@ -115,7 +120,7 @@ public class ShopAction extends ActionSupport implements RequestAware,
 			return ERROR;
 		}
 		List list = tagBiz.findByTitle(tag.getTitle());
-		if(list != null){
+		if(list != null && list.size() > 0){
 			tag = (Tag) list.get(0);
 		}
 		Set<Tag> tags = shop.getTags();
@@ -129,11 +134,11 @@ public class ShopAction extends ActionSupport implements RequestAware,
 	
 	public String delTag(){
 		
-		if(shop == null ||tag == null || tag.getTitle() == null){
+		if(shop == null ||tag == null || tag.getTid() == null){
 			return ERROR;
 		}
 		shop = shopBiz.findById(shop);
-		if(shop == null){
+		if(shop == null || tag == null){
 			return ERROR;
 		}
 		Set<Tag> tags = shop.getTags();

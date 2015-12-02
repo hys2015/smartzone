@@ -189,6 +189,18 @@ public class GoodAction extends ActionSupport implements RequestAware,
 		return SUCCESS;
 	}
 	
+	public String visibleGoodOnCategory(){
+		if(category == null || category.getCid() == null){
+			return ERROR;
+		}
+		category = categoryBiz.findById(category.getCid());
+		List list = goodBiz.findVisibleByCategory(category.getCid());
+		request.put("goods", list);
+		list = categoryBiz.findByShopId(category.getShop().getSid());
+		request.put("categorys", list);
+		return SUCCESS;
+	}
+	
 	public String delete(){
 		if( good == null || good.getGid() == null){
 			return ERROR;

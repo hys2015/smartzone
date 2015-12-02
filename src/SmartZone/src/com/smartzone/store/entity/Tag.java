@@ -56,9 +56,10 @@ public class Tag implements java.io.Serializable {
 	public boolean equals(Object obj) {
 		if(null != obj && obj instanceof Tag){
 			Tag t = (Tag) obj;
-			if(t.getTitle() == null || getTitle() == null){
+			if(getTid() == null || t.getTid() ==null){
 				return false;
-			}else if(getTitle().equals(t.getTitle())){
+			}
+			if(getTid() == t.getTid()){
 				return true;
 			}
 		}
@@ -67,6 +68,6 @@ public class Tag implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		return getTitle().hashCode();
+		return getTid().hashCode();
 	}
 }

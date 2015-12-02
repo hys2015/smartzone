@@ -28,4 +28,6 @@ public interface GoodBiz {
 
 	public List findLast10onShelf(Integer communityno);
 
+	public List findVisibleByCategory(Integer cid);
+
 }
