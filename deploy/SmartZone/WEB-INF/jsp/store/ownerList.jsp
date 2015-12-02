@@ -58,6 +58,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<s:property value="sid"/>
 							店铺名称:
 							<s:property value="sname"/>
+							<s:if test="visible == 0 ">
+								<span class="label label-default">不可见</span>
+							</s:if>
+							<s:else>
+								<span class="label label-success">可见</span>
+							</s:else>
 						</div>
 						<div class="panel-body">
 							店铺地址:

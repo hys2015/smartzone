@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<s:set var="imgURL" value="imgs[0].imgUrl"></s:set>
 						</s:if>
 						<s:if test="#session.logindata.obj.username == user.username">
-							<span class="pull-right h6 text-success" title="您是这家店的店主">店主</span>
+							<span class="pull-right h6 text-primary" title="您是这家店的店主">我的店</span>
 						</s:if>
 						<!-- title -->
 						<h3 class="text-center">

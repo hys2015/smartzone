@@ -50,7 +50,7 @@
 			  <span class="tooltip-inner">
 				<s:a cssClass="delete" action="delTag" namespace="/store">
 					<s:param name="shop.sid" value="#request.shop.sid"></s:param>
-					<s:param name="tag.title" value="title"></s:param>
+					<s:param name="tag.tid" value="tid"></s:param>
 					<span class="glyphicon glyphicon-remove"></span>
 				</s:a>
 			  </span>

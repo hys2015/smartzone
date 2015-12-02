@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 <body>
 <s:include value="/nav.jsp"></s:include>
-<div class="container-fluid">
+<div class="container">
 		<div class="row">
 			<div class="col-md-2">
 				<li class="list-group-item">
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</b>
 				</li>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-10">
 				<h2>${pageTitle }
 					<s:if test="shop.user.username == #session.logindata.obj.username">
 						<span class="pull-right">

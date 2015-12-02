@@ -25,6 +25,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			bindConfirm();
 		})
 	</script>	
+	<style type="text/css">
+		.detailpane{
+			background-color:#eee;
+		}
+		.thumbpane{
+			padding:0;
+		}
+		.thumb{
+			border:1px solid #eee;
+		}
+		.badge{
+			background-color: #d9534f;
+		}
+	</style>
   </head>
   
 <body>
@@ -33,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="row">
 			<h2>${pageTitle }</h2>
 			<hr>
-			<div class="col-md-3 col-md-offset-1">
+			<div class="col-md-2">
 				<s:a action="detail" namespace="/store">
 					<s:param name="shop.sid" value="category.shop.sid"></s:param>
 					<<商店首页
@@ -46,62 +60,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<s:param name="category.cid" value="cid"></s:param>
 						<s:property value="cname"/>
 					</s:a>
-					<span class="label label-danger">
-						<s:property value="goods.size"/>件商品
-					</span>
 					</li>
 				</s:iterator>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-10">
 				<div class="list-group">
 					<s:if test="category != null">
 						<br>
 						当前显示类别:
-						<label><s:property value="category.cname"/></label>
+						<label><s:property value="category.cname"/>
+						</label>
 					</s:if>
+					<div class="container-fluid">
+					
 					<s:iterator value="#request.goods">
 					<s:if test="visible == 1">
-						<li class="list-group-item">
-							编号：<s:property value="gid"/>
-							<br>
-							商品名:
-							<s:a action="detail" namespace="/store/goods">
-								<s:param name="good.gid" value="gid"></s:param>
-								<s:property value="gname"/>
-							</s:a>
-							
-							<br>
-							图片:
-							<div class="row">
-							 	<s:if test="imgs.size < 1">
+						<div class="col-md-3">
+							<div class="thumbnail">
+								<s:if test="imgs.size < 1">
 									<img class="img-thumbnail" alt="<s:property value="gname"/>">
 								</s:if>
-								<s:iterator value="imgs">
-									<div class="col-md-3">
-										<img class="img-thumbnail" src='<s:property value="imgUrl"/>'>
-									</div>
-								</s:iterator>
+								<s:else>
+									<s:iterator value="imgs">
+										<div class="col-md-3 thumbpane">
+										<img class="img-responsive thumb" src='<s:property value="imgUrl"/>'>
+										</div>
+									</s:iterator>
+								 	<p>
+									<img id="view" class="img-thumbnail" src='<s:property value='imgs[0].imgUrl'/>'>
+								</s:else>
+								<div>
+									<s:property value="gid"/>
+									<s:a action="detail" namespace="/store/goods">
+										<s:param name="good.gid" value="gid"></s:param>
+										<s:property value="gname"/>
+									</s:a>
+									<br>
+									<del>
+									￥<s:property value="price"/>
+									</del>
+									<b>
+									￥<s:property value="nowprice"/>
+									</b>
+									<br>
+									<span class="badge">
+										<s:property value="(nowprice/price*100).intValue()"/>折
+									</span>
+									<br>
+									库存:<s:property value="quantity"/>
+								</div>
 							</div>
-							<div>
-								<del>
-								￥<s:property value="price"/>
-								</del>
-								<b>
-								￥<s:property value="nowprice"/>
-								</b>
-								折扣:<s:property value="(nowprice/price*100).intValue()"/>%
-								<br>
-								库存:<s:property value="quantity"/>
-								<br>
-								所属类别:
-									<u>
-									<s:property value="category.cname"/>
-									</u>
-							</div>
-						</li>
+						</div>
 						</s:if><!-- visible -->
 					</s:iterator>
+					</div>
 				</div>
 			</div>
 		</div>

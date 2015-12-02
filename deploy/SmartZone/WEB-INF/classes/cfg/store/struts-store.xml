@@ -82,7 +82,7 @@
 		<action name="goodCategory" class="goodAction" method="goodOnCategory">
 			<result>/WEB-INF/jsp/store/goods/goodmanage.jsp</result>
 		</action>
-		<action name="showCategory" class="goodAction" method="goodOnCategory">
+		<action name="showCategory" class="goodAction" method="visibleGoodOnCategory">
 			<result>/WEB-INF/jsp/store/goods/showCategory.jsp</result>
 		</action>
 		<action name="toAdd" class="goodAction" method="toAdd">

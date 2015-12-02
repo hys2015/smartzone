@@ -133,7 +133,7 @@
 					<s:if test="#session.logindata.Type != 'admin'">
 						<img class="img-circle user_icon" src='${logindata.obj.img }'/>
 						<s:if test="#session.logindata.obj.isAdmin > 0">
-							<span class="label label-default">管理员</span>
+							<span class="label label-primary">管理员</span>
 						</s:if>
 							<u>${session.logindata.obj.username}</u>
 					</s:if>
