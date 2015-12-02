@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	">
+
+	<bean id="baseSource" class="org.apache.commons.dbcp.BasicDataSource" abstract="true">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+
+	<bean id="dataSource" parent="baseSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/">
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<!-- 
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				 -->
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/smartzone/info/entity/Administor.hbm.xml</value>
+				<value>com/smartzone/info/entity/Notice.hbm.xml</value>
+				<value>com/smartzone/info/entity/Repair.hbm.xml</value>
+				<value>com/smartzone/info/entity/User.hbm.xml</value>
+				<value>com/smartzone/info/entity/Company.hbm.xml</value>
+				<value>com/smartzone/info/entity/Community.hbm.xml</value>
+				<value>
+					com/smartzone/info/entity/Feedback.hbm.xml
+				</value>
+				<value>com/smartzone/info/entity/ReplyToFeed.hbm.xml</value>
+				<value>com/smartzone/bbs/entity/Post.hbm.xml</value>
+				<value>com/smartzone/bbs/entity/Bm.hbm.xml</value>
+				<value>com/smartzone/bbs/entity/Board.hbm.xml</value>
+				<value>com/smartzone/bbs/entity/Reply.hbm.xml</value>
+				<value>com/smartzone/info/entity/Series.hbm.xml</value>
+				<value>com/smartzone/info/entity/CarPort.hbm.xml</value>
+				<value>com/smartzone/info/entity/Carbill.hbm.xml</value>
+				<value>
+					com/smartzone/info/entity/Condobill.hbm.xml
+				</value>
+				<value>
+					com/smartzone/info/entity/Condofee.hbm.xml
+				</value>
+				<value>com/smartzone/store/entity/Shop.hbm.xml</value>
+				<value>
+					com/smartzone/store/entity/ShopImg.hbm.xml
+				</value>
+				<value>com/smartzone/store/entity/Tag.hbm.xml</value>
+				<value>com/smartzone/store/entity/Good.hbm.xml</value>
+				<value>
+					com/smartzone/store/entity/Category.hbm.xml
+				</value>
+				<value>
+					com/smartzone/store/entity/GoodImg.hbm.xml
+				</value>
+				<value>com/smartzone/store/entity/Item.hbm.xml</value>
+				<value>com/smartzone/store/entity/Order.hbm.xml</value>
+				<value>
+					com/smartzone/store/entity/Recaddr.hbm.xml
+				</value>
+				<value>
+					com/smartzone/store/entity/Comment.hbm.xml
+				</value></list>
+			</property>
+	</bean>
+	
+	<!-- 事务管理 
+	 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 定义切面，哪些方法应用事务规则 
+	-->
+	<aop:config>
+		<aop:pointcut id="bizMethods" expression="execution(* com.smartzone.*.biz.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bizMethods"/>
+	</aop:config>
+	
+	
+	
+	<!-- 实体类 -->
+	<bean id="transactionManager" 
+			class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	 <!-- DAO&BIZ beans -->
+
+	<import resource="cfg/bbs/BBSapplicationContext.xml"/>
+	<import resource="cfg/info/INFOapplicationContext.xml"/>
+	<import resource="cfg/store/STOREapplicationContext.xml"/>
+	</beans> 

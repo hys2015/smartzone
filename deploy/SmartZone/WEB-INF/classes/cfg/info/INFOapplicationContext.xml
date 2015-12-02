@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	">
+
+	<bean id="adminDAO" class="com.smartzone.info.dao.imp.AdminDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="adminBiz" class="com.smartzone.info.biz.imp.AdminBizImp">
+		<property name="adminDAO" ref="adminDAO"></property>
+	</bean>
+	<bean id="noticeDAO" class="com.smartzone.info.dao.imp.NoticeDAOImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="noticeBiz" class="com.smartzone.info.biz.imp.NoticeBizImp">
+		<property name="noticeDAO" ref="noticeDAO"></property>
+	</bean>
+	<bean id="repairDAO" class="com.smartzone.info.dao.imp.RepairDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="repairBiz" class="com.smartzone.info.biz.imp.RepairBizImp">
+		<property name="repairDAO">
+			<ref bean="repairDAO" />
+		</property>
+	</bean>
+	<bean id="userDAO" class="com.smartzone.info.dao.imp.UserDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="userBiz" class="com.smartzone.info.biz.imp.UserBizImp">
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+	</bean>
+	<bean id="CompanyDAO" class="com.smartzone.info.dao.imp.CompanyDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CompanyBiz" class="com.smartzone.info.biz.imp.CompanyBizImp">
+		<property name="companyDAO">
+			<ref bean="CompanyDAO" />
+		</property>
+	</bean>
+	<bean id="CommunityDAO" class="com.smartzone.info.dao.imp.CommunityDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CommunityBiz" class="com.smartzone.info.biz.imp.CommunityBizImp">
+		<property name="commDAO">
+			<ref bean="CommunityDAO" />
+		</property>
+	</bean>
+	
+	<bean id="FeedbackDAO"
+		class="com.smartzone.info.dao.imp.FeedbackDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="FeedbackBiz"
+		class="com.smartzone.info.biz.imp.FeedbackBizImp">
+		<property name="feedbackDAO">
+			<ref bean="FeedbackDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ReplyDAO" class="com.smartzone.info.dao.imp.ReplyDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ReplyBiz"
+		class="com.smartzone.info.biz.imp.ReplyBizImp">
+		<property name="replyDAO">
+			<ref bean="ReplyDAO" />
+		</property>
+	</bean>
+	
+	<bean id="SeriesDAO" class="com.smartzone.info.dao.imp.SeriesDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SeriesBiz"
+		class="com.smartzone.info.biz.imp.SeriesBizImp">
+		<property name="seriesdao">
+			<ref bean="SeriesDAO" />
+		</property>
+	</bean>
+	
+	<bean id="CarPortDAO"
+		class="com.smartzone.info.dao.imp.CarPortDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CarPortBiz"
+		class="com.smartzone.info.biz.imp.CarPortBizImp">
+		<property name="carportDAO">
+			<ref bean="CarPortDAO" />
+		</property>
+	</bean>
+	<bean id="CarbillDAO"
+		class="com.smartzone.info.dao.imp.CarbillDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CarbillBiz"
+		class="com.smartzone.info.biz.imp.CarbillBizImp">
+		<property name="carbillDAO">
+			<ref bean="CarbillDAO" />
+		</property>
+	</bean>
+	<bean id="CondofeeDAO"
+		class="com.smartzone.info.dao.imp.CondofeeDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CondofeeBiz"
+		class="com.smartzone.info.biz.imp.CondofeeBizImp">
+		<property name="condofeeDAO">
+			<ref bean="CondofeeDAO" />
+		</property>
+	</bean>
+	<bean id="CondobillDAO"
+		class="com.smartzone.info.dao.imp.CondobillDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CondobillBiz"
+		class="com.smartzone.info.biz.imp.CondobillBizImp">
+		<property name="condobillDAO">
+			<ref bean="CondobillDAO" />
+		</property>
+	</bean>
+	
+	
+	<!-- ActionBeans -->
+	<bean id="adminAction" class="com.smartzone.info.action.AdminAction" scope="prototype">
+		<property name="adminBiz" ref="adminBiz"/>
+		<property name="commBiz" ref="CommunityBiz"/>
+		<property name="companyBiz" ref="CompanyBiz"/>
+		<property name="userBiz" ref="userBiz"/>
+	</bean>
+	<bean id="noticeAction" class="com.smartzone.info.action.NoticeAction" scope="prototype">
+		<property name="nBiz" ref="noticeBiz"/>
+		<property name="seriesBiz" ref="SeriesBiz"/>
+	</bean>
+	<bean id="userAction" class="com.smartzone.info.action.UserAction" scope="prototype">
+		<property name="userBiz" ref="userBiz"/>
+		<property name="commBiz" ref="CommunityBiz"/>
+	</bean>
+	<bean id="repairAction" class="com.smartzone.info.action.RepairAction" scope="prototype">
+		<property name="repairBiz" ref="repairBiz"/>
+	</bean>
+	<bean id="feedbackAction" class="com.smartzone.info.action.FeedbackAction" scope="prototype">
+		<property name="fBiz" ref="FeedbackBiz"/>
+	</bean>
+	<bean id="replyAction" class="com.smartzone.info.action.ReplyAction" scope="prototype">
+		<property name="rBiz" ref="ReplyBiz"/>
+	</bean>
+	<bean id="fileUploadAction" class="com.smartzone.info.action.FileUploadAction" scope="prototype">
+		<property name="userBiz" ref="userBiz"/>
+	</bean>
+	<bean id="seriesAction" class="com.smartzone.info.action.SeriesAction" scope="prototype">
+		<property name="seriesBiz" ref="SeriesBiz"/>
+		<property name="noticeBiz" ref="noticeBiz"/>
+	</bean>
+	<bean id="carportAction" class="com.smartzone.info.action.CarPortAction" scope="prototype">
+		<property name="carportBiz" ref="CarPortBiz"/>
+	</bean>
+	<bean id="carbillAction" class="com.smartzone.info.action.CarbillAction" scope="prototype">
+		<property name="carbillBiz" ref="CarbillBiz"/>
+		<property name="carportBiz" ref="CarPortBiz"/>
+	</bean>
+	<bean id="condofeeAction" class="com.smartzone.info.action.CondofeeAction" scope="prototype">
+		<property name="condofeeBiz" ref="CondofeeBiz"/>
+		<property name="condobillBiz" ref="CondobillBiz"/>
+		<property name="userBiz" ref="userBiz"/>
+	</bean>
+	<bean id="feeAction" class="com.smartzone.info.action.FeeAction" scope="prototype">
+		<property name="carportBiz" ref="CarPortBiz"/>
+		<property name="condobillBiz" ref="CondobillBiz"/>
+	</bean>
+	<bean id="indexAction" class="com.smartzone.info.action.IndexAction" scope="prototype">
+		<property name="goodBiz" ref="GoodBiz"/>
+		<property name="postBiz" ref="PostBiz"/>
+		<property name="noticeBiz" ref="noticeBiz"/>
+	</bean>
+</beans>

@@ -1,0 +1,68 @@
+.navbar-brand{
+	padding: 10px 15px;
+}
+
+.delimiter{
+	display:block;
+	width:0.05em;
+	height:5em;
+	background-color:#999;	
+	margin:0 auto;
+}
+.foot-img{
+	display:inline-block;
+	
+}
+
+/*头像*/
+.user_icon{
+	border: 0.1em solid rgb(200,200,255);	
+	width:2em;
+	height:2em;
+	margin-top:-0.4em;
+	margin-bottom:-0.3em;
+}
+
+/*小红点*/
+.mybadge{
+	    display: inline-block;
+	    width: 0.5em;
+	    height: 0.5em;
+	    background-color: red;
+	    border-radius: 1.4em;
+	    box-shadow: 0.02em 0.03em 0.2em rgba(0,0,0,0.5);
+	    position:relative;
+	    bottom:0.5em;
+	    right:0.3em;
+}
+.no-border{
+	border-style:none;
+}
+.navbar-default{
+	font-family:"黑体","宋体";
+	background-color:rgba(248,248,248,0.7);
+}
+.navbar-default .navbar-brand{
+	color:#000;
+}
+.navbar-default .navbar-nav>li>a{
+	color:#000;
+}
+.navbar-nav li{
+	margin-bottom:2px;
+}
+.navbar-nav li:hover{
+	background-color:rgba(200,200,200,0.2);
+	border-bottom:3px solid #999;
+	margin-bottom:0;
+}
+.dropdown-menu li:hover{
+	border:none;
+	margin-bottom:3px;	
+}
+.breadcrumb{
+	display:inline-block;
+}
+.breadcrumb>li+li:before{
+	content:'>';	
+}

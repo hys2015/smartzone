@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<package name="bbs" namespace="/bbs" extends="default,logincheck">
+	
+		<global-results>
+			<result name="index" type="redirect">index</result>
+		</global-results>
+
+		<action name="index">
+			<result type="chain">listAllBoards</result>
+		</action>
+
+		<action name="visitBoard" class="BoardAction" method="visit">
+			<result name="success" type="redirect">showPosts.action?board.boardId=${board.boardId}</result>
+		</action>
+		<action name="manageBoard" class="BoardAction" method="manage">
+			<result name="success">/WEB-INF/jsp/bbs/boardmanage.jsp</result>
+		</action>
+		<action name="addBoard" class="BoardAction" method="add">
+			<result name="input">/WEB-INF/jsp/bbs/boardmanage.jsp</result>
+			<result name="success" type="redirect">manageBoard</result>
+		</action>
+		<action name="deleteBoard" class="BoardAction" method="delete">
+			<result name="success" type="redirect">manageBoard</result>
+		</action>
+		<action name="updateBoard" class="BoardAction" method="update">
+			<result name="success" type="redirect">manageBoard</result>
+		</action>
+		<action name="listAllBoards" class="BoardAction" method="listAll">
+			<result name="success">/WEB-INF/jsp/bbs/boardlist.jsp</result>
+			<result name="nav">/WEB-INF/jsp/bbs/boardnav.jsp</result>
+		</action>
+		
+		<action name="createPost" class="PostAction" method="create">
+			<result name="success" type="redirect">visitPost?post.postId=${post.postId}</result>
+		</action>
+		<action name="deletePost" class="PostAction" method="delete">
+			<result type="redirect">visitBoard?board.boardId=${post.board.boardId}</result>
+		</action>
+		<action name="showPosts" class="PostAction" method="posts">
+			<result name="success">/WEB-INF/jsp/bbs/board.jsp</result>
+		</action>
+		<action name="visitPost" class="PostAction" method="visitPost">
+			<result name="success" type="redirect">showReplies?post.postId=${post.postId}</result>
+		</action>
+		<action name="hotPost" class="PostAction" method="hotPost">
+			<result name="success">/WEB-INF/jsp/bbs/hotpost.jsp</result>
+		</action>
+		
+		<action name="createReply" class="bbsReplyAction" method="create">
+			<result name="success" type="redirect">showReplies?post.postId=${post.postId}</result>
+		</action>
+		<action name="showReplies" class="bbsReplyAction" method="replies">
+			<result name="success">/WEB-INF/jsp/bbs/post.jsp</result>
+		</action>
+		<action name="deleteReply" class="bbsReplyAction" method="delete">
+			<result type="redirect">showReplies?post.postId=${post.postId}</result>
+		</action>
+		<action name="replyStar" class="bbsReplyAction" method="replyStar">
+			<result name="success">/WEB-INF/jsp/bbs/replystar.jsp</result>
+		</action>
+		<action name="toUpdateReply" class="bbsReplyAction" method="toUpdate">
+			<result name="success">/WEB-INF/jsp/bbs/updatereply.jsp</result>
+		</action>
+		<action name="updateReply" class="bbsReplyAction" method="update">
+			<result type="redirect">showReplies?post.postId=${post.postId}</result>
+		</action>
+		
+    </package>  
+</struts>

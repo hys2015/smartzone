@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 注意，这里value是正则表达式 -->
+	<constant name="struts.action.excludePattern" value="/ueditor/jsp/.*"/>
+	
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="default" extends="struts-default" abstract="true">
+		<interceptors>
+			<interceptor name="userLoginCheck" class="com.smartzone.info.interceptor.UserLoginCheckInterceptor"/>
+			<interceptor name="BreadCrumb" class="com.smartzone.info.interceptor.BreadCrumbInterceptor"/>
+			<interceptor-stack name="breadStack">
+                        <interceptor-ref name="BreadCrumb"/>
+                        <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+			<interceptor-stack name="checkStack">
+                        <interceptor-ref name="userLoginCheck" />
+                        <interceptor-ref name="BreadCrumb"/>
+                        <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+		   <result name="error">/err.jsp</result>
+		   <result name="invalid.token">/err.jsp</result>
+		   <result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<action name="404" >
+			<result type="dispatcher">/404.jsp</result>
+		</action>
+		
+	</package>
+	
+	<package name="logincheck">
+		<default-interceptor-ref name="checkStack"></default-interceptor-ref>
+		<default-action-ref name="404"></default-action-ref>
+	</package>
+	
+	<package name="breadcrumb">
+		<default-interceptor-ref name="breadStack"></default-interceptor-ref>
+		<default-action-ref name="404"></default-action-ref>
+	</package>
+	
+	
+	<include file="cfg/info/struts-info.xml"></include>
+	<include file="cfg/bbs/struts-bbs.xml"></include>
+	<include file="cfg/store/struts-store.xml"></include>
+	 
+	
+	<constant name="struts.i18n.encoding" value="utf8"/>
+	<constant name="struts.objectFactory" value="spring"/>
+	
+</struts>

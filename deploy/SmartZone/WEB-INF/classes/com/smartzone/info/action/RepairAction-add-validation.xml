@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+<validators>
+	<field name="repair.rcontent">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>事项不能为空</message>
+		</field-validator>
+	</field>
+	<field name="repair.raddr">
+		<field-validator type="requiredstring">
+			<message>地址不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">5</param>
+			<message>地址长度要在${minLength}位以上</message>
+		</field-validator>
+	</field>
+	<field name="repair.rphone">
+		<field-validator type="required">
+			<message>电话不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">11</param>
+			<param name="maxLength">11</param>
+			<message>电话长度必须是${minLength}位</message>
+		</field-validator>
+	</field>
+	<field name="repair.rcontent">
+		<field-validator type="required">
+			<message>内容不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">1000</param>
+			<message>内容长度不要超过${maxLength}</message>
+		</field-validator>
+	</field>
+</validators>

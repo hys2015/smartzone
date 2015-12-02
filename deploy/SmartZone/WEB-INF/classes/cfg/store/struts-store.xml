@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<package name="store" namespace="/store" extends="default,logincheck">
+	
+		<global-results>
+			<result name="index" type="redirect">index</result>
+		</global-results>
+		
+		<action name="index">
+			<result type="chain">userShow</result>
+		</action>
+		<action name="userShow" class="shopAction" method="userShow">
+			<result>/WEB-INF/jsp/store/shoplist.jsp</result>
+		</action>
+		<action name="adminShow" class="shopAction" method="adminShow">
+			<result>/WEB-INF/jsp/store/shopadmin.jsp</result>
+		</action>
+		<action name="open" class="shopAction" method="open">
+			<result type="redirect">adminShow</result>
+		</action>
+		<action name="close" class="shopAction" method="close">
+			<result type="redirect">adminShow</result>
+		</action>
+		<action name="searchShop" class="shopAction" method="search">
+			<result>/WEB-INF/jsp/store/shoplist.jsp</result>
+		</action>
+		<action name="tagShop" class="shopAction" method="tagShop">
+			<result>/WEB-INF/jsp/store/shoplist.jsp</result>
+		</action>
+		<action name="toAddShop">
+			<result>/WEB-INF/jsp/store/shop.jsp</result>
+		</action>
+		<action name="addShop" class="shopAction" method="add">
+			<result name="input">/WEB-INF/jsp/store/shop.jsp</result>
+			<result type="redirect">ownerShop</result>
+		</action>
+		<action name="ownerShop" class="shopAction" method="ownerShop">
+			<result>/WEB-INF/jsp/store/ownerList.jsp</result>
+		</action>
+		<action name="toUpdateShop" class="shopAction" method="toUpdate">
+			<result>/WEB-INF/jsp/store/shop.jsp</result>
+		</action>
+		<action name="addTag" class="shopAction" method="addTag">
+			<result type="redirect">toUpdateShop?shop.sid=${shop.sid}</result>
+		</action>
+		<action name="delTag" class="shopAction" method="delTag">
+			<result type="redirect">toUpdateShop?shop.sid=${shop.sid}</result>
+		</action>
+		<action name="tagNav" class="shopAction" method="tagNav">
+			<result>/WEB-INF/jsp/store/navtags.jsp</result>
+		</action>
+		<action name="detail" class="shopAction" method="detail">
+			<result>/WEB-INF/jsp/store/detail.jsp</result>
+		</action>
+		
+		<action name="toUploadImg" class="uploadAction" method="toUpload">
+			<result>/WEB-INF/jsp/store/uploadImg.jsp</result>
+		</action>
+		
+		<action name="uploadShopImg" class="uploadAction">
+			<result type="redirect">toUpdateShop?shop.sid=${shop.sid}</result>
+		</action>
+		<action name="delImg" class="uploadAction" method="delete">
+			<result type="redirect">toUpdateShop?shop.sid=${shop.sid}</result>
+		</action>
+		
+    </package>  
+    
+    <package name="goods" namespace="/store/goods" extends="default,logincheck">
+    	
+		<action name="detail" class="goodAction" method="detail">
+			<result>/WEB-INF/jsp/store/goods/detail.jsp</result>
+		</action>
+		<action name="goods" class="goodAction" method="show">
+			<result>/WEB-INF/jsp/store/goods/goodlist.jsp</result>
+		</action>
+		<action name="goodManage" class="goodAction" method="manage">
+			<result>/WEB-INF/jsp/store/goods/goodmanage.jsp</result>
+		</action>
+		<action name="goodCategory" class="goodAction" method="goodOnCategory">
+			<result>/WEB-INF/jsp/store/goods/goodmanage.jsp</result>
+		</action>
+		<action name="showCategory" class="goodAction" method="goodOnCategory">
+			<result>/WEB-INF/jsp/store/goods/showCategory.jsp</result>
+		</action>
+		<action name="toAdd" class="goodAction" method="toAdd">
+			<result>/WEB-INF/jsp/store/goods/good.jsp</result>
+		</action>
+		<action name="add" class="goodAction" method="add">
+			<result type="redirect">
+				goodManage?shop.sid=${category.shop.sid}
+			</result>
+		</action>
+		<action name="del" class="goodAction" method="delete">
+			<result type="redirect">
+				goodManage?shop.sid=${good.category.shop.sid}
+			</result>
+		</action>
+		<action name="onShelf" class="goodAction" method="onShelf">
+			<result type="redirect">
+				goodManage?shop.sid=${good.category.shop.sid}
+			</result>
+		</action>
+		<action name="awayShelf" class="goodAction" method="awayShelf">
+			<result type="redirect">
+				goodManage?shop.sid=${good.category.shop.sid}
+			</result>
+		</action>
+		<action name="toUpdate" class="goodAction" method="toUpdate" >
+			<result>/WEB-INF/jsp/store/goods/goodupdate.jsp</result>			
+		</action>
+		<action name="update" class="goodAction" method="update">
+			<result type="redirect">toUpdate?good.gid=${good.gid}</result>		
+		</action>
+		<action name="toAddImg" class="goodAction" method="toAddImg">
+			<result>/WEB-INF/jsp/store/goods/uploadImg.jsp</result>			
+		</action>
+		<action name="addImg" class="goodAction" method="addImg" >
+			<result type="redirect">toUpdate?good.gid=${good.gid}</result>			
+		</action>
+		<action name="delImg" class="goodAction" method="delImg" >
+			<result type="redirect">toUpdate?good.gid=${good.gid}</result>			
+		</action>
+		<action name="addCategory" class="goodAction" method="addCategory" >
+			<result type="redirect">goodManage?shop.sid=${category.shop.sid}</result>			
+		</action>
+		<action name="delCategory" class="goodAction" method="delCategory" >
+			<result type="redirect">goodManage?shop.sid=${shop.sid}</result>			
+		</action>
+		
+    </package>
+    
+    <package name="cart" namespace="/store/cart" extends="default,logincheck">
+    	<global-results>
+			<result name="index" type="redirect">index</result>
+		</global-results>
+		<action name="index">
+			<result type="chain">show</result>
+		</action>
+		<action name="show" class="cartAction" method="show">
+			<result>/WEB-INF/jsp/store/cart/cart.jsp</result>
+		</action>
+		
+		<action name="del" class="cartAction" method="del">
+			<result type="redirect">show</result>
+		</action>
+		
+		<action name="test" class="cartAction" method="test">
+			<result>abcde</result>
+		</action>	
+    </package> 
+    <package name="json" namespace="/store/cart" extends="json-default">
+    	<action name="add" class="cartAction" method="add">
+			<result type="json">
+				<param name="encoding">UTF-8</param>
+				<param name="contentType">text/html</param>
+				<param name="includeProperties">status,cartsize</param> 
+			</result>
+		</action>
+    </package>
+    
+    <package name="order" namespace="/store/order" extends="store">
+		<action name="toAdd" class="orderAction" method="toAdd">
+			<result>/WEB-INF/jsp/store/order/order.jsp</result>
+		</action>
+		<action name="add" class="orderAction" method="add">
+			<result type="redirect">toPay.action?order.oid=${order.oid}</result>
+		</action>
+		<action name="userShow" class="orderAction" method="userShow">
+			<result>/WEB-INF/jsp/store/order/userShow.jsp</result>
+		</action>
+		<action name="cancel" class="orderAction" method="cancel">
+			<result type="redirect">userShow</result>
+		</action>
+		<action name="toPay" class="orderAction" method="toPay">
+			<result type="redirectAction">
+				<param name="actionName">choseBank</param>
+            	<param name="namespace">/pay</param>
+           	</result>
+		</action>
+    </package>
+    
+    <package name="recaddr" namespace="/store/order/recaddr" extends="order">
+    	<action name="show" class="recaddrAction" method="show">
+    		<result>/WEB-INF/jsp/store/order/recaddr/recaddr.jsp</result>
+    	</action>
+    	<action name="add" class="recaddrAction" method="add">
+    		<result type="redirect">show</result>
+    	</action>
+    	<action name="del" class="recaddrAction" method="delete">
+    		<result type="redirect">show</result>
+    	</action>
+    </package>
+    
+    <package name="pay" namespace="/pay" extends="default,logincheck">
+		<action name="choseBank">
+			<result>/WEB-INF/jsp/store/pay/choseBank.jsp</result>
+		</action>
+		<action name="pay" class="payAction" method="pay">
+			<result>/WEB-INF/jsp/store/pay/connector.jsp</result>
+		</action>
+		<action name="payResult" class="payAction" method="payResult">
+			<result>/WEB-INF/jsp/store/pay/payResult.jsp</result>
+		</action>
+    </package>
+    
+    <package name="comments" namespace="/store/comments" extends="store">
+    	<action name="toAdd" class="commentAction" method="toAdd">
+    		<result>/WEB-INF/jsp/store/comment/comment.jsp</result>
+    	</action>
+    	<action name="add" class="commentAction" method="add">
+    		<result>/WEB-INF/jsp/store/comment/success.jsp</result>
+    	</action>
+    </package>
+</struts>
