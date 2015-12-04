@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="admin" extends="default,logincheck" namespace="/">
-	
+	<package name="index" extends="default,logincheck" namespace="/">
 		<action name="index" class="indexAction" method="index">
 			<result>/WEB-INF/jsp/index.jsp</result>
-		</action>
-		<action name="login" class="adminAction" method="login">
-			<result name="input">login.jsp</result>
-			<result name="success" type="redirect">show</result>
-		</action>
-		<action name="regAdmin" class="adminAction" method="register">
-			<result name="input">admin/addAdmin.jsp</result>
-			<result name="success">admin/addAdmin.jsp</result>
 		</action>
 		<action name="logout" class="adminAction" method="logout">
 			<result type="redirect">index.action</result>
 		</action>
+	</package>
+
+	<package name="admin" extends="default,breadcrumb" namespace="/admin">
+		<action name="index">
+			<result>show</result>
+		</action>
+		<action name="login" class="adminAction" method="login">
+			<result name="input">login.jsp</result>
+			<result name="success" type="redirect">/admin/show</result>
+		</action>
+	</package>
+	
+	<package name="adminopt" namespace="/admin" extends="default,admincheck">
+		<action name="regAdmin" class="adminAction" method="register">
+			<result name="input">/admin/addAdmin.jsp</result>
+			<result name="success">/admin/addAdmin.jsp</result>
+		</action>
 		<action name="adminDetail" class="adminAction" method="detail">
-			<result>admin/detail.jsp</result>
+			<result>/admin/detail.jsp</result>
 		</action>
 		<action name="updateAdmin" class="adminAction" method="update">
-			<result name="input">admin/detail.jsp</result>
-			<result>admin/detail.jsp</result>
+			<result name="input">/admin/detail.jsp</result>
+			<result>/admin/detail.jsp</result>
 		</action>
 		<action name="toAddAdmin">
-			<result>admin/addAdmin.jsp</result>
+			<result>/admin/addAdmin.jsp</result>
 		</action>
 		<action name="show" class="adminAction" method="show">
-			<result>admin/list.jsp</result>
+			<result>/admin/list.jsp</result>
 		</action>
 		<action name="roleChange" class="adminAction" method="roleChange">
 			<result type="redirect">show</result>
 		</action>
 	</package>
+
 	
 	
 	<package name="user" namespace="/user" extends="default,breadcrumb">
@@ -55,7 +64,7 @@
 			<result>detail.jsp</result>
 		</action>
 		<action name="toUpdate" class="userAction" method="toUpdate">
-			<interceptor-ref name="checkStack"></interceptor-ref>
+			<interceptor-ref name="userCheckStack"></interceptor-ref>
 			<result>user.jsp</result>
 		</action>
 		<action name="update" class="userAction" method="update">
@@ -63,7 +72,7 @@
 			<result type="redirect">detail</result>
 		</action>
 		<action name="toUpload">
-			<interceptor-ref name="checkStack"></interceptor-ref>
+			<interceptor-ref name="userCheckStack"></interceptor-ref>
 			<result type="redirect">uploadIcon.jsp</result>
 		</action>
 	</package>

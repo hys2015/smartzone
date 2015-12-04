@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.20)
-# Date: 2015-11-27 18:01:56
+# Date: 2015-12-04 17:48:21
 # Generator: MySQL-Front 5.3  (Build 4.249)
 
 /*!40101 SET NAMES utf8 */;
@@ -79,13 +79,13 @@ CREATE TABLE `bbs_board` (
   PRIMARY KEY (`board_id`),
   KEY `communityno` (`communityno`),
   CONSTRAINT `bbs_board_ibfk_1` FOREIGN KEY (`communityno`) REFERENCES `communities` (`communityno`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='bbs';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='bbs';
 
 #
 # Data for table "bbs_board"
 #
 
-INSERT INTO `bbs_board` VALUES (1,'二手交易',1,10,'不用的东西都可以放在这里进行交易'),(2,'拼车出行',1,NULL,'拼车出行！'),(3,'谈天说地',1,NULL,'来和邻居聊聊吧！'),(5,'新版块',1,1,'新版块描述');
+INSERT INTO `bbs_board` VALUES (1,'二手交易',1,11,'不用的东西都可以放在这里进行交易'),(2,'拼车出行',1,2,'拼车出行！'),(3,'谈天说地',1,1,'来和邻居聊聊吧！'),(5,'新版块',1,1,'新版块描述'),(6,'我来了',1,NULL,'呵呵');
 
 #
 # Structure for table "feedbacks"
@@ -100,13 +100,13 @@ CREATE TABLE `feedbacks` (
   `fcontent` varchar(1000) DEFAULT NULL,
   `communityno` int(5) DEFAULT NULL,
   PRIMARY KEY (`fno`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "feedbacks"
 #
 
-INSERT INTO `feedbacks` VALUES (1,'1号楼玻璃碎了，请予以解决','user1','2015-10-23 21:20:21','<p>如题</p>',1),(2,'出问题了！','user1','2015-10-25 13:30:03','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447132322350046922.jpg\" title=\"1447132322350046922.jpg\" alt=\"1.jpg\" width=\"228\" height=\"173\" style=\"width: 228px; height: 173px;\"/>房子冒烟了</p>',1),(3,'又来一遍的测试','user1','2015-10-23 23:49:02','<p>我是测试别读了</p>',1),(4,'2号小区留言测试','user2','2015-10-23 23:53:26','<p>测试测试</p>',2),(7,'删除测试','user1','2015-10-24 10:04:09','<p>删除删除</p>',1),(8,'删除分页测试','user1','2015-10-24 10:04:24','<p>测试</p>',1),(12,'级联删除 编辑测试','user1','2015-10-25 12:34:32','<p>测试测试</p>',1),(13,'feedback通知测试','user1','2015-10-26 10:47:05','<p>测试</p>',1),(14,'留言','user1','2015-10-26 23:01:20','<p>新留言</p>',1);
+INSERT INTO `feedbacks` VALUES (1,'1号楼玻璃碎了，请予以解决','user1','2015-10-23 21:20:21','<p>如题</p>',1),(2,'出问题了！','user1','2015-10-25 13:30:03','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447132322350046922.jpg\" title=\"1447132322350046922.jpg\" alt=\"1.jpg\" width=\"228\" height=\"173\" style=\"width: 228px; height: 173px;\"/>房子冒烟了</p>',1),(3,'又来一遍的测试','user1','2015-10-23 23:49:02','<p>我是测试别读了</p>',1),(4,'2号小区留言测试','user2','2015-10-23 23:53:26','<p>测试测试</p>',2),(7,'删除测试','user1','2015-10-24 10:04:09','<p>删除删除</p>',1),(12,'级联删除 编辑测试','user1','2015-10-25 12:34:32','<p>测试测试</p>',1),(13,'feedback通知测试','user1','2015-10-26 10:47:05','<p>测试</p>',1),(14,'留言','user1','2015-10-26 23:01:20','<p>新留言</p>',1),(16,'112','','2015-11-27 20:23:02','<p>111</p>',NULL),(17,'121','','2015-11-27 20:23:24','<p>122</p>',NULL);
 
 #
 # Structure for table "notice_series"
@@ -121,13 +121,13 @@ CREATE TABLE `notice_series` (
   UNIQUE KEY `s_name` (`series_name`),
   KEY `FK_series_communityno` (`communityno`),
   CONSTRAINT `FK_series_communityno` FOREIGN KEY (`communityno`) REFERENCES `communities` (`communityno`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "notice_series"
 #
 
-INSERT INTO `notice_series` VALUES (1,'小区新闻',1),(2,'活动天地',1),(3,'通知公告',1),(4,'失物招领',1),(6,'新版块',1);
+INSERT INTO `notice_series` VALUES (1,'小区新闻1',1),(2,'活动天地',1),(3,'通知公告',1),(4,'失物招领',1),(9,'新版块',1);
 
 #
 # Structure for table "notices"
@@ -152,13 +152,13 @@ CREATE TABLE `notices` (
   KEY `FK_notice_series_id` (`series_id`),
   CONSTRAINT `FK_notice_series_id` FOREIGN KEY (`series_id`) REFERENCES `notice_series` (`series_id`),
   CONSTRAINT `fk_notices_communityno` FOREIGN KEY (`communityno`) REFERENCES `communities` (`communityno`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "notices"
 #
 
-INSERT INTO `notices` VALUES (2,'新公告','admin1','<p>abcdert</p>',1,5,1,'2015-10-21 22:30:38','2015-11-08 10:38:09',0,1,1),(3,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:24','2015-11-08 10:40:18',0,2,1),(4,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:37','2015-11-06 17:08:01',0,3,0),(5,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:43','2015-11-06 17:08:01',1,4,0),(6,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:54','2015-11-08 10:38:09',1,1,2),(7,'公告测试','admin1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151105/1446690076740093086.jpg\" title=\"1446690076740093086.jpg\" alt=\"78020151030004845.jpg\" width=\"361\" height=\"75\" style=\"width: 361px; height: 75px;\"/>公告测试</p>',1,5,1,'2015-10-24 10:06:06','2015-11-08 10:40:18',4,2,2),(8,'图片公告123','admin1','<p>我是图片如下</p><p></p><p>图片测试已修改</p>',1,5,1,'2015-10-24 10:07:11','2015-11-06 17:08:58',10,3,1),(9,'ueditor  测试','admin1','<p>测试ceshi</p>',1,5,1,'2015-10-26 14:18:52','2015-11-06 17:09:02',7,4,1),(10,'新的权限控制','admin1','<p>权限编辑一下<br/></p>',1,5,1,'2015-10-26 22:37:48','2015-11-08 10:38:09',26,1,3),(11,'新公告','admin1','<p>公告<br/></p>',1,5,1,'2015-11-05 16:34:18','2015-11-08 10:40:21',1,2,3),(12,'活动天地1234','admin1','<p>活动天地</p>',1,5,1,'2015-11-08 10:32:17','2015-11-08 10:38:09',2,1,0),(17,'活动ssss1111','admin1','<p>活动啊啊啊啊<br/></p>',1,5,1,'2015-11-08 12:01:03','2015-11-08 12:01:55',4,1,4),(18,'钥匙一串','admin1','<p>要是</p>',1,5,1,'2015-11-08 13:13:15','2015-11-08 13:13:15',1,4,2),(19,'新闻','admin1','<p>新闻1-1-</p>',1,5,1,'2015-11-08 19:05:11','2015-11-08 19:05:11',7,1,5);
+INSERT INTO `notices` VALUES (2,'新公告','admin1','<p>abcdert</p>',1,5,1,'2015-10-21 22:30:38','2015-11-08 10:38:09',0,1,1),(3,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:24','2015-11-30 11:05:50',0,2,0),(4,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:37','2015-11-06 17:08:01',0,3,0),(5,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:43','2015-11-06 17:08:01',1,4,0),(6,'公告测试','admin1','<p>测试</p>',1,5,1,'2015-10-24 10:05:54','2015-11-08 10:38:09',1,1,2),(7,'公告测试','admin1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151105/1446690076740093086.jpg\" title=\"1446690076740093086.jpg\" alt=\"78020151030004845.jpg\" width=\"361\" height=\"75\" style=\"width: 361px; height: 75px;\"/>公告测试</p>',1,5,1,'2015-10-24 10:06:06','2015-11-30 11:05:52',4,2,1),(8,'图片公告123','admin1','<p>我是图片如下</p><p></p><p>图片测试已修改</p>',1,5,1,'2015-10-24 10:07:11','2015-11-06 17:08:58',10,3,1),(9,'ueditor  测试','admin1','<p>测试ceshi</p>',1,5,1,'2015-10-26 14:18:52','2015-11-06 17:09:02',7,4,1),(10,'新的权限控制','admin1','<p>权限编辑一下<br/></p>',1,5,1,'2015-10-26 22:37:48','2015-11-08 10:38:09',26,1,3),(11,'新公告','admin1','<p>公告<br/></p>',1,5,1,'2015-11-05 16:34:18','2015-11-30 11:05:53',2,2,2),(12,'活动天地1234','admin1','<p>活动天地</p>',0,5,1,'2015-11-08 10:32:17','2015-11-08 10:38:09',2,1,0),(17,'活动ssss1111','admin1','<p>活动啊啊啊啊<br/></p>',1,5,1,'2015-11-08 12:01:03','2015-11-08 12:01:55',4,1,4),(18,'钥匙一串','admin1','<p>要是</p>',1,5,1,'2015-11-08 13:13:15','2015-11-30 11:05:53',2,2,3),(20,'测试','admin1','<p>网上说<br/></p>',1,5,1,'2015-11-27 20:01:36','2015-11-27 20:01:36',0,2,4),(21,'11','admin1','<p>11</p>',1,5,1,'2015-11-27 20:04:12','2015-12-01 11:49:26',1,4,2),(22,'11','admin1','<p>11</p>',1,5,1,'2015-11-27 20:04:30','2015-11-27 20:04:30',0,1,5),(23,'11','admin1','<p>11</p>',1,10,1,'2015-11-27 20:04:40','2015-11-30 11:05:57',0,2,5),(24,'新闻1-1','admin1','<p>ssss</p>',1,5,1,'2015-11-30 15:33:34','2015-11-30 15:33:34',1,1,6);
 
 #
 # Structure for table "repairs"
@@ -211,7 +211,7 @@ CREATE TABLE `replies` (
 # Data for table "replies"
 #
 
-INSERT INTO `replies` VALUES (1,'user1','2015-10-23 21:23:17','<p>1单元5楼南边的窗户</p>',1,0),(2,'admin1','2015-10-23 21:24:57','<p>好的，我们正在派人修理</p>',1,1),(3,'admin1','2015-10-23 23:49:45','<p>请您不要开玩笑好吗</p>',2,0),(12,'user1','2015-10-25 13:57:19','<p>我是测试已修</p>',2,1),(13,'user1','2015-11-10 19:19:51','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447154390279090623.jpg\" title=\"1447154390279090623.jpg\" alt=\"78020151030004845.jpg\"/></p>',2,2),(14,'admin1','2015-11-18 21:23:28','<p>哈哈哈哈</p>',13,0);
+INSERT INTO `replies` VALUES (1,'user1','2015-10-23 21:23:17','<p>1单元5楼南边的窗户</p>',1,0),(2,'admin1','2015-10-23 21:24:57','<p>好的，我们正在派人修理</p>',1,1),(3,'admin1','2015-10-23 23:49:45','<p>请您不要开玩笑好吗</p>',2,0),(12,'user1','2015-10-25 13:57:19','<p>我是测试已修</p>',2,1),(14,'admin1','2015-11-18 21:23:28','<p>哈哈哈哈</p>',13,0);
 
 #
 # Structure for table "root"
@@ -252,7 +252,7 @@ CREATE TABLE `users` (
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES ('admin1','1234','addr2','12366667888',1,b'1','/SmartZone/upload/img/1.jpg'),('user1','1234','addr1 modsss','12312312311',1,b'0','/SmartZone/upload/img/55520151110191706.jpg'),('user2','12345','addr1','12312312311',1,b'0','/SmartZone/upload/img/78820151102164642.jpg'),('user3','12345','addr1','12312312311',3,b'0','/SmartZone/upload/img/1.jpg');
+INSERT INTO `users` VALUES ('admin1','1234','sea','6666666',1,b'1','/SmartZone/upload/img/1.jpg'),('user1','1234','addr1 modsss','12312312311',1,b'0','/SmartZone/upload/img/22720151202180426.jpg'),('user2','12345','addr1','12312312311',1,b'0','/SmartZone/upload/img/78820151102164642.jpg'),('user3','12345','addr1','12312312311',3,b'0','/SmartZone/upload/img/1.jpg');
 
 #
 # Structure for table "condofee"
@@ -288,13 +288,13 @@ CREATE TABLE `condobill` (
   PRIMARY KEY (`bid`),
   KEY `FK_condobill_username` (`username`),
   CONSTRAINT `FK_condobill_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "condobill"
 #
 
-INSERT INTO `condobill` VALUES (1,'admin1','2015-10-29','2016-04-29','2015-11-15 10:06:12',b'1',1000.00),(2,'admin1','2015-11-15','2016-03-15','2015-11-15 11:13:07',b'0',300.00);
+INSERT INTO `condobill` VALUES (1,'admin1','2015-10-29','2016-04-29','2015-11-15 10:06:12',b'1',1000.00),(2,'admin1','2015-11-15','2016-03-15','2015-11-15 11:13:07',b'0',300.00),(3,'admin1','2015-10-31','2016-01-31','2015-11-27 20:14:44',b'0',10.00);
 
 #
 # Structure for table "carports"
@@ -311,13 +311,13 @@ CREATE TABLE `carports` (
   KEY `FK_carport_commno` (`communityno`),
   CONSTRAINT `FK_carport_commno` FOREIGN KEY (`communityno`) REFERENCES `communities` (`communityno`),
   CONSTRAINT `FK_carport_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "carports"
 #
 
-INSERT INTO `carports` VALUES (1,55,'user1',1),(2,50,'admin1',1),(3,50,NULL,1),(4,30,NULL,1),(5,NULL,NULL,1),(6,NULL,NULL,1),(7,NULL,NULL,1),(8,NULL,NULL,1),(9,NULL,NULL,1),(10,NULL,NULL,1),(11,99,'admin1',1),(12,60,NULL,1),(13,48,NULL,1);
+INSERT INTO `carports` VALUES (1,55,'user1',1),(2,50,'admin1',1),(3,16,NULL,1),(4,30,'admin1',1),(5,66666,NULL,1),(6,100,NULL,1),(7,NULL,NULL,1),(8,NULL,NULL,1),(9,NULL,NULL,1),(10,NULL,NULL,1),(11,99,'admin1',1),(12,60,NULL,1),(13,48,NULL,1),(14,2,NULL,1),(15,2,NULL,1);
 
 #
 # Structure for table "carbill"
@@ -341,13 +341,13 @@ CREATE TABLE `carbill` (
   CONSTRAINT `FK_carbill_carportId` FOREIGN KEY (`carport_id`) REFERENCES `carports` (`carport_id`),
   CONSTRAINT `FK_carbill_communityno` FOREIGN KEY (`communityno`) REFERENCES `communities` (`communityno`),
   CONSTRAINT `FK_carbill_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "carbill"
 #
 
-INSERT INTO `carbill` VALUES (1,1,'admin1','2015-11-09 21:11:33',b'0','2015-10-07','2015-11-07',600,1),(2,2,'admin1','2015-11-10 11:05:42',b'0','2015-11-10','2016-01-10',100,1),(3,11,'admin1','2015-11-11 17:05:06',b'1','2015-11-11','2015-12-11',99,1),(4,1,'user1','2015-11-15 13:20:07',b'1','2015-11-05','2016-09-05',550,1);
+INSERT INTO `carbill` VALUES (1,1,'admin1','2015-11-09 21:11:33',b'0','2015-10-07','2015-11-07',600,1),(2,2,'admin1','2015-11-10 11:05:42',b'0','2015-11-10','2016-01-10',100,1),(3,11,'admin1','2015-11-11 17:05:06',b'1','2015-11-11','2015-12-11',99,1),(4,1,'user1','2015-11-15 13:20:07',b'1','2015-11-05','2016-09-05',550,1),(5,2,'admin1','2015-11-27 20:10:00',b'0','2015-10-29','2015-12-29',100,1),(6,2,'admin1','2015-11-27 20:10:18',b'0','2015-10-29','2015-12-29',100,1),(7,2,'admin1','2015-11-27 20:10:35',b'0','2015-10-29','2015-12-29',100,1),(8,2,'admin1','2015-11-27 20:10:54',b'0','2015-10-29','2015-12-29',100,1),(9,2,'admin1','2015-11-27 20:11:20',b'0','2015-09-30','2015-11-30',100,1),(10,2,'admin1','2015-11-27 20:11:32',b'0','2015-09-30','2015-11-30',100,1);
 
 #
 # Structure for table "bbs_post"
@@ -370,13 +370,13 @@ CREATE TABLE `bbs_post` (
   KEY `FK_Relationship_5` (`board_id`),
   CONSTRAINT `FK_post_boardid` FOREIGN KEY (`board_id`) REFERENCES `bbs_board` (`board_id`),
   CONSTRAINT `FK_post_userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='bbs';
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='bbs';
 
 #
 # Data for table "bbs_post"
 #
 
-INSERT INTO `bbs_post` VALUES (4,'user1',1,'post1','2015-11-02 16:38:28','2015-11-08 19:15:26','2015-11-05 10:03:42',43,'<p>我是ss测啊</p>',10),(9,'user1',1,'热门测试','2015-11-03 12:09:13','2015-11-03 12:09:12','2015-11-03 12:09:12',0,'<p>测试</p>',1),(10,'user1',1,'长度测试测试测试','2015-11-03 12:09:37','2015-11-03 12:09:37','2015-11-03 12:09:37',0,'<p>测试</p>',1),(11,'user1',1,'长度长长长长长长长长长长长长长长长','2015-11-03 12:37:01','2015-11-03 12:43:18','2015-11-03 12:37:01',2,'<p>标题很长</p>',1),(12,'user1',1,'标题短，内容长','2015-11-03 16:56:36','2015-11-08 22:13:42','2015-11-03 16:56:36',3,'<p>内容偿还仓促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常</p>',1),(13,'user1',1,'内容带图片','2015-11-03 17:03:06','2015-11-10 19:19:34','2015-11-10 19:19:34',15,'<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151103/1446541362747070417.jpg\" title=\"1446541362747070417.jpg\" alt=\"3.jpg\" width=\"272\" height=\"185\" style=\"width: 272px; height: 185px;\"/>dabd</p>',2),(15,'user1',1,'删除','2015-11-04 23:06:28','2015-11-04 23:06:27','2015-11-04 23:06:27',0,'<p>shanchu</p>',1),(16,'admin1',1,'新帖子','2015-11-05 10:02:48','2015-11-08 15:26:38','2015-11-05 10:02:48',1,'<p>新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子</p>',1),(17,'admin1',1,'新帖子','2015-11-05 10:03:04','2015-11-05 10:03:04','2015-11-05 10:03:04',0,'<p>翻页了该</p>',1),(18,'admin1',1,'分页','2015-11-05 10:03:19','2015-11-10 19:17:35','2015-11-05 12:37:55',7,'<p>分页</p>',1),(19,'admin1',5,'新标题','2015-11-08 19:15:03','2015-11-27 11:27:49','2015-11-08 19:15:03',11,'<p>标题！<br/></p>',1);
+INSERT INTO `bbs_post` VALUES (4,'user1',1,'post1','2015-11-02 16:38:28','2015-11-08 19:15:26','2015-11-05 10:03:42',43,'<p>我是ss测啊</p>',10),(12,'user1',1,'标题短，内容长','2015-11-03 16:56:36','2015-11-08 22:13:42','2015-11-03 16:56:36',3,'<p>内容偿还仓促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常</p>',1),(13,'user1',1,'内容带图片','2015-11-03 17:03:06','2015-11-27 20:29:19','2015-11-27 20:04:38',26,'<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151103/1446541362747070417.jpg\" title=\"1446541362747070417.jpg\" alt=\"3.jpg\" width=\"272\" height=\"185\" style=\"width: 272px; height: 185px;\"/>dabd</p>',5),(15,'user1',1,'删除','2015-11-04 23:06:28','2015-11-27 20:01:24','2015-11-04 23:06:27',3,'<p>shanchu</p>',1),(16,'admin1',1,'新帖子','2015-11-05 10:02:48','2015-11-08 15:26:38','2015-11-05 10:02:48',1,'<p>新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子</p>',1),(17,'admin1',1,'新帖子','2015-11-05 10:03:04','2015-11-05 10:03:04','2015-11-05 10:03:04',0,'<p>翻页了该</p>',1),(18,'admin1',1,'分页','2015-11-05 10:03:19','2015-11-27 20:04:52','2015-11-05 12:37:55',9,'<p>分页</p>',1),(19,'admin1',5,'新标题','2015-11-08 19:15:03','2015-11-27 19:55:18','2015-11-08 19:15:03',13,'<p>标题！<br/></p>',1),(21,'admin1',2,'I\'m coming','2015-11-27 19:59:09','2015-11-27 20:00:04','2015-11-27 19:59:46',4,'<p>What are you looking for?</p>',2),(22,'admin1',3,'13说到底','2015-11-27 20:01:16','2015-11-27 20:01:15','2015-11-27 20:01:15',0,'<p>大神</p>',1),(23,'admin1',1,'213','2015-11-27 20:05:06','2015-11-27 20:29:28','2015-11-27 20:27:33',4,'<p>大声道</p>',2),(27,'admin1',1,'22121','2015-11-27 20:27:57','2015-11-27 20:29:10','2015-11-27 20:27:56',1,NULL,1),(35,'admin1',1,'标题','2015-11-30 16:03:59','2015-11-30 16:03:59','2015-11-30 16:03:59',0,'<p>标题测试<img src=\"http://localhost:8080/SmartZone/ueditor/dialogs/emotion/images/jx2/j_0015.gif\"/></p>',1),(36,'admin1',1,'新帖子测试','2015-11-30 16:21:45','2015-12-01 12:08:04','2015-11-30 16:29:55',12,'<p>测试</p>',2),(37,'admin1',2,'我试试能删除','2015-12-01 12:08:24','2015-12-01 12:08:24','2015-12-01 12:08:24',2,'<p>不鞥</p>',1);
 
 #
 # Structure for table "bbs_reply"
@@ -397,13 +397,13 @@ CREATE TABLE `bbs_reply` (
   CONSTRAINT `FK_reply_postid` FOREIGN KEY (`post_id`) REFERENCES `bbs_post` (`post_id`),
   CONSTRAINT `FK_reply_userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`username`),
   CONSTRAINT `bbs_reply_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `bbs_post` (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "bbs_reply"
 #
 
-INSERT INTO `bbs_reply` VALUES (7,4,'user1','<p>我是测试啊</p>','2015-11-02 16:38:27',0),(8,4,'user1','<p>回复一下</p>','2015-11-02 16:44:07',1),(9,4,'user1','<p>板凳!</p>','2015-11-02 16:44:17',2),(10,4,'user2','<p>地板</p>','2015-11-02 16:48:29',3),(11,4,'user2','<p>&nbsp;长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试</p>','2015-11-02 17:10:33',4),(12,4,'user2','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151102/1446455447174071030.jpg\" title=\"1446455447174071030.jpg\" alt=\"3.jpg\" width=\"828\" height=\"364\" style=\"width: 828px; height: 364px;\"/></p>','2015-11-02 17:11:05',5),(21,9,'user1','<p>测试</p>','2015-11-03 12:09:13',0),(22,10,'user1','<p>测试</p>','2015-11-03 12:09:37',0),(23,11,'user1','<p>标题很长</p>','2015-11-03 12:37:01',0),(24,4,'user1','<p>回复置顶测试</p>','2015-11-03 15:58:49',6),(25,4,'user1','<p>回复数量测试</p>','2015-11-03 16:02:28',7),(26,4,'user1','<p>trigger测试</p>','2015-11-03 16:27:40',8),(27,12,'user1','<p>内容偿还仓促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常</p>','2015-11-03 16:56:36',0),(28,13,'user1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447154272561016782.jpg\" title=\"1447154272561016782.jpg\" alt=\"3.jpg\" width=\"271\" height=\"130\" style=\"width: 271px; height: 130px;\"/>dabd</p>','2015-11-10 19:18:18',0),(30,15,'user1','<p>shanchu</p>','2015-11-04 23:06:27',0),(31,16,'admin1','<p>新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子</p>','2015-11-05 10:02:48',0),(32,17,'admin1','<p>翻页了该</p>','2015-11-05 10:03:04',0),(33,18,'admin1','<p>分页</p>','2015-11-05 10:03:18',0),(34,4,'admin1','<p>顶顶顶</p>','2015-11-05 10:03:42',9),(39,19,'admin1','<p>标题！<br/></p>','2015-11-08 19:15:03',0),(40,13,'user1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447154365842049300.jpg\" title=\"1447154365842049300.jpg\" alt=\"78020151030004845.jpg\"/></p>','2015-11-10 19:19:34',1);
+INSERT INTO `bbs_reply` VALUES (7,4,'user1','<p>我是测试啊</p>','2015-11-02 16:38:27',0),(8,4,'user1','<p>回复一下</p>','2015-11-02 16:44:07',1),(9,4,'user1','<p>板凳!</p>','2015-11-02 16:44:17',2),(10,4,'user2','<p>地板</p>','2015-11-02 16:48:29',3),(11,4,'user2','<p>&nbsp;长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试长度测试</p>','2015-11-02 17:10:33',4),(12,4,'user2','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151102/1446455447174071030.jpg\" title=\"1446455447174071030.jpg\" alt=\"3.jpg\" width=\"828\" height=\"364\" style=\"width: 828px; height: 364px;\"/></p>','2015-11-02 17:11:05',5),(24,4,'user1','<p>回复置顶测试</p>','2015-11-03 15:58:49',6),(25,4,'user1','<p>回复数量测试</p>','2015-11-03 16:02:28',7),(26,4,'user1','<p>trigger测试</p>','2015-11-03 16:27:40',8),(27,12,'user1','<p>内容偿还仓促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常促常常常常</p>','2015-11-03 16:56:36',0),(28,13,'user1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447154272561016782.jpg\" title=\"1447154272561016782.jpg\" alt=\"3.jpg\" width=\"271\" height=\"130\" style=\"width: 271px; height: 130px;\"/>dabd</p>','2015-11-10 19:18:18',0),(30,15,'user1','<p>shanchu</p>','2015-11-04 23:06:27',0),(31,16,'admin1','<p>新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子新帖子</p>','2015-11-05 10:02:48',0),(32,17,'admin1','<p>翻页了该</p>','2015-11-05 10:03:04',0),(33,18,'admin1','<p>分页</p>','2015-11-05 10:03:18',0),(34,4,'admin1','<p>顶顶顶</p>','2015-11-05 10:03:42',9),(39,19,'admin1','<p>标题！<br/></p>','2015-11-08 19:15:03',0),(40,13,'user1','<p><img src=\"/SmartZone/ueditor/jsp/upload/image/20151110/1447154365842049300.jpg\" title=\"1447154365842049300.jpg\" alt=\"78020151030004845.jpg\"/></p>','2015-11-10 19:19:34',1),(42,13,'admin1','<p>124温热水的特</p>','2015-11-27 19:57:50',2),(43,21,'admin1','<p>What are you looking for?</p>','2015-11-27 19:59:09',0),(44,21,'admin1','<p>asd吃顿饭按顺序</p>','2015-11-27 20:00:04',1),(45,22,'admin1','<p>大神</p>','2015-11-27 20:01:15',0),(46,13,'admin1','<p><img src=\"http://10.100.221.3:8080/SmartZone/ueditor/dialogs/emotion/images/jx2/j_0001.gif\"/></p>','2015-11-27 20:04:22',3),(47,13,'admin1','<p><img src=\"http://10.100.221.3:8080/SmartZone/ueditor/dialogs/emotion/images/jx2/j_0003.gif\"/></p>','2015-11-27 20:04:37',4),(48,23,'admin1','<p>大声道</p>','2015-11-27 20:05:05',0),(53,23,'admin1','<p>22</p>','2015-11-27 20:27:32',1),(54,27,'admin1',NULL,'2015-11-27 20:27:56',0),(61,NULL,'admin1','','2015-11-30 16:12:23',NULL),(62,35,'admin1','<p>标题测试<img src=\"http://localhost:8080/SmartZone/ueditor/dialogs/emotion/images/jx2/j_0015.gif\"/></p>','2015-11-30 16:03:59',0),(63,36,'admin1','<p>测试</p>','2015-11-30 16:21:44',0),(65,36,'admin1','<p>good</p>','2015-11-30 16:29:54',1),(66,37,'admin1','<p>不鞥</p>','2015-12-01 12:08:24',0);
 
 #
 # Structure for table "bbs_bm"

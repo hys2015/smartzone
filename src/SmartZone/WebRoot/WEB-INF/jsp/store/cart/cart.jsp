@@ -29,8 +29,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-6 col-md-offset-3">
 				<h2>${pageTitle }</h2>
 				<hr>
-				<s:if test="#session.logindata.cart.items.size < 1">
-					您的购物车空空如也 
+				<s:if test="#session.logindata.cart == null || #session.logindata.cart.items.size < 1">
+					您的购物车空空如也，去 
+					<s:a action="index" namespace="/store">逛逛</s:a>
+					吧!
 				</s:if>
 				<s:else>
 				<s:form action="toAdd" namespace="/store/order">

@@ -130,6 +130,10 @@
 			<result type="redirect">goodManage?shop.sid=${shop.sid}</result>			
 		</action>
 		
+		<action name="goodsRecommand" class="goodAction" method="goodsRecommand">
+			<result>/WEB-INF/jsp/store/goods/recommand/index.jsp</result>
+		</action>
+		
     </package>
     
     <package name="cart" namespace="/store/cart" extends="default,logincheck">

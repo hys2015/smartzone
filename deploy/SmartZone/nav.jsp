@@ -119,6 +119,7 @@
 					<li><a href="${loginURL }">登录</a></li>
 				</s:if>
 				<s:else>
+					<s:if test="#session.logindata.Type != 'admin' ">
 				<li>
 					<s:a title="购物车" action="index" namespace="/store/cart">
 					<span class="glyphicon glyphicon-shopping-cart"></span>
@@ -128,6 +129,7 @@
 					</span>)
 					</s:a>
 				</li>
+					</s:if>
 				<li class="dropdown">
 		     	  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					<s:if test="#session.logindata.Type != 'admin'">
@@ -171,11 +173,11 @@
 						<s:if test="#session.logindata.Type == 'admin'">
 						<!-- 管理员 -->
 							<li>
-								<s:url var="manageURL" action="show" namespace="/"></s:url>
+								<s:url var="manageURL" action="show" namespace="/admin"></s:url>
 								<a href="${manageURL }">后台管理</a>
 							</li>
 							<li>
-								<s:url var="adminDetail" action="adminDetail" namespace="/"></s:url>
+								<s:url var="adminDetail" action="adminDetail" namespace="/admin"></s:url>
 								<a href="${adminDetail }">修改密码</a>
 							</li>
 						</s:if>

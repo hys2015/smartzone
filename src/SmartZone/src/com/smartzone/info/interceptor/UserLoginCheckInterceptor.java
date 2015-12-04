@@ -19,8 +19,6 @@ public class UserLoginCheckInterceptor extends AbstractInterceptor {
 	 */
 	private static final long serialVersionUID = 6728133047998551543L;
 
-	private StringBuffer toURL;
-	
 	@Override
 	public String intercept(ActionInvocation ai) throws Exception {
 		Map<String,Object> session = ai.getInvocationContext().getSession();
@@ -30,14 +28,6 @@ public class UserLoginCheckInterceptor extends AbstractInterceptor {
         }
     	 session.put("message","欢迎您，请先登录");
          return Action.LOGIN;
-	}
-
-	public StringBuffer getToURL() {
-		return toURL;
-	}
-
-	public void setToURL(StringBuffer toURL) {
-		this.toURL = toURL;
 	}
 
 }

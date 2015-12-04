@@ -49,6 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</s:a>
 						<label><s:property value="category.cname"/></label>
 					</s:if>
+					<p>温馨提示：添加商品时，请先添加好类别再添加商品!</p>
 					<s:iterator value="#request.goods">
 						<li class="list-group-item">
 							<span class="pull-right">

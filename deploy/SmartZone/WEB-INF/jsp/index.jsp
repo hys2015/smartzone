@@ -18,93 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<s:include value="/boot.html"></s:include>
-	<style type="text/css">
-		#linearBg2 {
-		
-			  /* Safari 4-5, Chrome 1-9 */
-			  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2E4CA6), to(#69B5F1));
-			
-			  /* Safari 5.1, Chrome 10+ */
-			  background: -webkit-linear-gradient(top, #2E4CA6, #69B5F1);
-			
-			  /* Firefox 3.6+ */
-			  background: -moz-linear-gradient(top, #2E4CA6, #69B5F1);
-			
-			  /* IE 10 */
-			  background: -ms-linear-gradient(top, #2E4CA6, #69B5F1);
-			
-			  /* Opera 11.10+ */
-			  background: -o-linear-gradient(top, #2E4CA6, #69B5F1);
-			}
-		body{
-			background-size:100% 350px;
-			background-repeat:no-repeat;
-			background-image:url('img/bg1.jpg');
-			background-color:#69B5F1;
-		}
-		.jumbotron{
-			background-color:rgba(255,255,255,0.4);
-			font-family:"微软雅黑";
-			margin-top:-20px;
-			margin-bottom:50px;
-		}
-		.main .container{
-			background-color:rgba(255,255,255,0.9);
-			padding:2em;
-		}
-		.navbar-default{
-			background-color:rgba(0,0,0,0);
-		}
-		.navbar-default .navbar-nav>li>a
-		   ,.navbar-default .navbar-brand{
-			color:#fff;
-		}
-		.nav-pane{
-			vertical-align:middle;
-			float:right;
-			margin-top:-1em;
-			margin-right:9em;
-			margin-left:-29em;
-		}
-		.a-panel{
-			overflow:hidden;
-			display:inline-block;
-			width:70px;
-			height:70px;
-			margin:5px;
-		}
-		.a-panel>a{
-			display:block;
-			line-height:35px;
-			font-size:30px;
-			text-decoration:none;
-			background-color:rgba(0,0,0,0.5);
-			color:#fff;
-		}
-		.a-panel>.content{
-			display:block;
-			height:100%;
-			width:70px;
-		}
-		.a-panel>.content>span{
-			font-size: 50px;
-    		line-height: 70px;
-		}
-		.transparent{
-			display:inline-block;
-			opacity:0;
-			margin-right:165px;
-		}
-		.footer{
-			width:100%;
-			background-color:#fff;
-			background-image:url('/SmartZone/img/fbg1.jpg');	
-			background-size:100% 100%;
-		}
-		.footer .col-md-3,.footer .col-md-6 p{
-			color:#fff;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/index.css">
 	<script type="text/javascript">
 		$(function(){
 			$(".a-panel").bind("mouseover",function(){
@@ -156,6 +70,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div class="main  container-fluid "  id="linearBg2">
   		<div class="row">
 			<div class="container">
+			<div class="index-btn col-md-12  text-center">
+			 		<div class="btns">
+			            	<s:a action="feeCenter" namespace="/fee" >
+			            		我要缴费
+			            		<i class="glyphicon glyphicon-jpy"></i>
+			            	</s:a>
+				            <s:a action="toAdd" namespace="/repair">
+				            	我要报修
+				            	<i class="glyphicon glyphicon-alert"></i>
+				            	</s:a>
+			            	<s:a action="show" namespace="/feedback">
+			            		我要留言
+			            		<i class="glyphicon glyphicon-comment"></i>
+			           		</s:a>
+			 		</div>
+			</div>
 			<div class="col-md-6">
 				<label>
 				<s:a action="index" namespace="/notice">

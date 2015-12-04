@@ -20,6 +20,8 @@ public interface GoodDAO {
 
 	public List findVisibleByProperty(String string, Integer sid);
 
-	public List findLastOnShelf(Integer communityno, int num);
+	public List findLastOnShelf(String propertyName, Integer communityno, int num);
+
+	public List findRecommandedGoods(Good good, int num);
 
 }

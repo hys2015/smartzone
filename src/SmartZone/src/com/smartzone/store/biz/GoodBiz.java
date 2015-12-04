@@ -30,4 +30,6 @@ public interface GoodBiz {
 
 	public List findVisibleByCategory(Integer cid);
 
+	public List findRecommandedFoodsByShop(Good good);
+
 }

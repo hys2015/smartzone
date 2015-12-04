@@ -289,6 +289,16 @@ public class GoodAction extends ActionSupport implements RequestAware,
 		return SUCCESS;
 	}
 	
+	public String goodsRecommand(){
+		if(good == null || good.getGid() == null){
+			return ERROR;
+		}
+		good = goodBiz.findById(good.getGid());
+		List goods = goodBiz.findRecommandedFoodsByShop(good);
+		request.put("recommandGoods", goods);
+		return SUCCESS;
+	}
+	
 	/*********************GETTER & SETTER*************************/
 	
 	public void setRequest(Map<String, Object> request) {

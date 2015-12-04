@@ -200,14 +200,33 @@ public class GoodDAOImp implements GoodDAO {
 	}
 
 	@Override
-	public List findLastOnShelf(Integer communityno, int num) {
-		log.debug("finding last " + num +"onshelf Good instances");
+	public List findLastOnShelf(String propertyName,Integer communityno, int num) {
+		log.debug("finding last " + num +" onshelf Good instances.\n"
+				+ " propertyName:"+propertyName
+				+ "value:" + communityno);
 		try {
 			String queryString = "from Good g "
-					+ "where g.category.shop.user.community.communityno = ? "
+					+ "where g."+ propertyName +" = ? "
 					+ "and g.visible = 1 order by g.onshelftime desc";
 			Query queryObject = getCurrentSession().createQuery(queryString);
 			queryObject.setParameter(0, communityno);
+			queryObject.setMaxResults(num);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("find failed", re);
+			throw re;
+		}
+	}
+
+	@Override
+	public List findRecommandedGoods(Good good, int num) {
+		log.debug("finding RecommandedGoods good.gid: " +good.getGid());
+		try {
+			String queryString = "from Good g "
+					+ "where g.gid != "+ good.getGid() +"and g.category.shop.sid = ? "
+					+ "and g.visible = 1 order by g.onshelftime desc";
+			Query queryObject = getCurrentSession().createQuery(queryString);
+			queryObject.setParameter(0, good.getCategory().getShop().getSid());
 			queryObject.setMaxResults(num);
 			return queryObject.list();
 		} catch (RuntimeException re) {

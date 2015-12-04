@@ -81,6 +81,12 @@ public class GoodBizImp implements GoodBiz {
 	@Override
 	public List findLast10onShelf(Integer communityno) {
 		int num = 8;
-		return goodDAO.findLastOnShelf(communityno, num);
+		return goodDAO.findLastOnShelf("category.shop.user.community.communityno",communityno, num);
+	}
+
+	@Override
+	public List findRecommandedFoodsByShop(Good good) {
+		int num = 3;
+		return goodDAO.findRecommandedGoods(good, num);
 	}
 }

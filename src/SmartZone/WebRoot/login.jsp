@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("input:eq(0)").attr("name","user.username");
 				$("input:eq(1)").attr("name","user.userpwd");
 			}else{
-				$("form:eq(0)").attr("action","login.action");
+				$("form:eq(0)").attr("action","admin/login.action");
 				$("input:eq(0)").attr("name","admin.adminName");
 				$("input:eq(1)").attr("name","admin.adminPwd");
 			}

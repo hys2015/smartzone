@@ -10,12 +10,18 @@
 		<interceptors>
 			<interceptor name="userLoginCheck" class="com.smartzone.info.interceptor.UserLoginCheckInterceptor"/>
 			<interceptor name="BreadCrumb" class="com.smartzone.info.interceptor.BreadCrumbInterceptor"/>
+			<interceptor name="adminLoginCheck" class="com.smartzone.info.interceptor.AdminLoginCheckInterceptor"/>
 			<interceptor-stack name="breadStack">
                         <interceptor-ref name="BreadCrumb"/>
                         <interceptor-ref name="defaultStack" />
             </interceptor-stack>
-			<interceptor-stack name="checkStack">
+			<interceptor-stack name="userCheckStack">
                         <interceptor-ref name="userLoginCheck" />
+                        <interceptor-ref name="BreadCrumb"/>
+                        <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+            <interceptor-stack name="adminCheckStack">
+                        <interceptor-ref name="adminLoginCheck" />
                         <interceptor-ref name="BreadCrumb"/>
                         <interceptor-ref name="defaultStack" />
             </interceptor-stack>
@@ -34,7 +40,7 @@
 	</package>
 	
 	<package name="logincheck">
-		<default-interceptor-ref name="checkStack"></default-interceptor-ref>
+		<default-interceptor-ref name="userCheckStack"></default-interceptor-ref>
 		<default-action-ref name="404"></default-action-ref>
 	</package>
 	
@@ -43,6 +49,10 @@
 		<default-action-ref name="404"></default-action-ref>
 	</package>
 	
+	<package name="admincheck">
+		<default-interceptor-ref name="adminCheckStack"></default-interceptor-ref>
+		<default-action-ref name="404"></default-action-ref>
+	</package>
 	
 	<include file="cfg/info/struts-info.xml"></include>
 	<include file="cfg/bbs/struts-bbs.xml"></include>

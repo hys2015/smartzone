@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 		$(function(){
 			$("img.thumb").bind("mouseover",function(){
-				$("img#view").attr("src",$(this).attr("src"));
+				$(this).parent().parent().parent().find("img#view").attr("src",$(this).attr("src"));
 			});
 			$("a.addToCart").bind("click",function(){
 				var quantity = $("input#quantity").val();
@@ -163,6 +163,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 				</div>
 			</div>
+			
+			<div class="col-md-2">
+				<s:action name="goodsRecommand" namespace="/store/goods" executeResult="true">
+					<s:param name="good.gid" value="#request.good.gid"></s:param>
+				</s:action>
+			</div>
+			
 		</div>
 	</div>
 </body>
