@@ -233,7 +233,7 @@ public class ReplyDAOImp implements ReplyDAO {
 	public List getReplyStar() {
 		log.debug("getReplyStar");
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select s.user from Reply s group by s.user.username order by count(*)";
+		String hql = "select s.user from Reply s group by s.user.username order by count(*) desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setMaxResults(10);
 		log.debug("getReplyStar getting list");

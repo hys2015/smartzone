@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.6.20)
-# Date: 2015-12-06 12:23:39
+# Date: 2015-12-06 22:35:40
 # Generator: MySQL-Front 5.3  (Build 4.249)
 
 /*!40101 SET NAMES utf8 */;
@@ -24,7 +24,7 @@ CREATE TABLE `recaddr` (
 # Data for table "recaddr"
 #
 
-INSERT INTO `recaddr` VALUES (1,'admin1','addr2','12366667888','2015-12-05 15:37:28','小明',b'1'),(2,'admin1','addr2','12366667888','2015-11-20 20:20:30','小红',b'0'),(3,'admin1','二号楼一单元三楼','13077771111','2015-12-05 18:48:00','吴达炯',b'1'),(4,'admin1','22','22',NULL,'',b'0'),(5,'admin1','','22',NULL,'',b'0');
+INSERT INTO `recaddr` VALUES (1,'admin1','addr2','12366667888','2015-12-05 15:37:28','小明',b'1'),(2,'admin1','addr2','12366667888','2015-11-20 20:20:30','小红',b'0'),(3,'admin1','二号楼一单元三楼','13077771111','2015-12-05 18:48:00','吴达炯',b'1');
 
 #
 # Structure for table "orders"
@@ -119,7 +119,7 @@ CREATE TABLE `shops` (
 # Data for table "shops"
 #
 
-INSERT INTO `shops` VALUES (4,'金太阳超市','admin1','小区北门路南200米','11133332222','wechat',NULL,'','金太阳',NULL,b'1'),(5,'万福超市123','admin1','小区北门东50米','13011112222','weixin001',NULL,'12345678','阿拉啦啦啦啦啦',NULL,b'1'),(6,'shop4','admin1','addr','11133332222','wechatsmartzone',NULL,'','小小的世界大大的梦想',NULL,b'0'),(7,'22222222','admin1','22222','222222','222',NULL,'22','',NULL,b'0');
+INSERT INTO `shops` VALUES (4,'金太阳超市','admin1','小区北门路南200米','11133332222','wechat',NULL,'','金太阳',NULL,b'1'),(5,'万福超市','admin1','小区北门东50米','13011112222','weixin001',NULL,'12345678','阿拉啦啦啦啦啦',NULL,b'1'),(6,'shop4','admin1','addr','11133332222','wechatsmartzone',NULL,'','小小的世界大大的梦想',NULL,b'0'),(7,'22222222','admin1','22222','222222','222',NULL,'22','',NULL,b'0');
 
 #
 # Structure for table "category"
@@ -178,6 +178,7 @@ CREATE TABLE `item` (
   `gid` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `oid` int(11) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL COMMENT '留言',
   PRIMARY KEY (`iid`),
   KEY `FK_item_oid` (`oid`),
   KEY `FK_item_gid` (`gid`),
@@ -189,7 +190,7 @@ CREATE TABLE `item` (
 # Data for table "item"
 #
 
-INSERT INTO `item` VALUES (1,2,1,11119),(2,3,2,2),(3,3,1,11120),(4,3,1,11121),(5,3,1,11122),(6,13,1,11123),(7,22,2,11123),(8,1,30,11124),(9,13,1,11125),(10,21,1,11126),(11,2,1,11126),(12,13,1,11126);
+INSERT INTO `item` VALUES (1,2,1,11119,NULL),(2,3,2,2,NULL),(3,3,1,11120,NULL),(4,3,1,11121,NULL),(5,3,1,11122,NULL),(6,13,1,11123,NULL),(7,22,2,11123,NULL),(8,1,30,11124,NULL),(9,13,1,11125,NULL),(10,21,1,11126,NULL),(11,2,1,11126,NULL),(12,13,1,11126,NULL);
 
 #
 # Structure for table "comments"
@@ -263,7 +264,7 @@ CREATE TABLE `bills` (
 # Data for table "bills"
 #
 
-INSERT INTO `bills` VALUES (2,9,5,1,'2015-12-05 19:35:53','2015-12-05 19:35:53',0,3.30),(3,9,5,1,'2015-12-05 19:46:33','2015-12-05 19:46:33',0,3.30),(4,9,5,1,'2015-12-05 19:47:48','2015-12-05 19:47:48',0,3.30);
+INSERT INTO `bills` VALUES (2,9,5,1,'2015-12-05 19:35:53','2015-12-05 19:35:53',2,3.30),(3,9,5,1,'2015-12-05 19:46:33','2015-12-05 19:46:33',0,3.30),(4,9,5,1,'2015-12-05 19:47:48','2015-12-05 19:47:48',0,3.30);
 
 #
 # Structure for table "tags"
@@ -274,7 +275,7 @@ CREATE TABLE `tags` (
   `tid` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(10) NOT NULL DEFAULT 'none',
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "tags"

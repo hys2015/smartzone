@@ -56,6 +56,11 @@
 	border-bottom:3px solid #999;
 	margin-bottom:0;
 }
+.navbar-nav li.community:hover{
+	background-color:rgba(200,200,200,0);
+	cursor:hand;
+	color:rgba(255,255,255,0.7);
+}
 .dropdown-menu li:hover{
 	border:none;
 	margin-bottom:3px;	

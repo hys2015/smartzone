@@ -31,6 +31,7 @@
 		   <result name="error">/err.jsp</result>
 		   <result name="invalid.token">/err.jsp</result>
 		   <result name="login" type="redirect">/login.jsp</result>
+		   <result name="browser" type="redirect">/browser.jsp</result>
 		</global-results>
 		
 		<action name="404" >

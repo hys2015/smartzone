@@ -60,6 +60,12 @@
 		<action name="logout" class="userAction" method="logout">
 			<result type="redirect">../index</result>
 		</action>
+		<action name="toRegister" class="userAction" method="toRegister">
+			<result>/user/register.jsp</result>
+		</action>
+		<action name="register" class="userAction" method="register">
+			<result type="redirect">/user/success.jsp</result>
+		</action>
 		<action name="detail" class="userAction" method="detail">
 			<result>detail.jsp</result>
 		</action>

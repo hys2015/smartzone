@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="pull-right">
 					<s:if test="#session.logindata.obj.isAdmin > 0">
 					<s:a cssClass="btn btn-danger" action="adminShow" namespace="/store">
-						商店管理</s:a>
+						商店审核</s:a>
 					</s:if>
 					<s:url var="ownerShopURL" action="ownerShop" namespace="/store"></s:url>
 					<a class="btn btn-default" href="${ownerShopURL }">我的商店</a>

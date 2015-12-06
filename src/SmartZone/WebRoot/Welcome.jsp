@@ -29,7 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-6 col-md-offset-3">
 				<h3>欢迎来到智慧社区！</h3>
 				<p>请稍候...</p>
-				<% response.sendRedirect("/SmartZone/index"); %>
+				<% 
+				String header = request.getHeader("User-Agent");
+				if(header.indexOf("WebKit")==-1||header.contains("MSIE")){
+					//非webkit内核，转发到提示页
+					request.getRequestDispatcher("/browser.jsp").forward(request, response);
+		  			return;
+				}
+				response.sendRedirect("/SmartZone/index"); %>
 			</div>
 		</div>
 	</div>

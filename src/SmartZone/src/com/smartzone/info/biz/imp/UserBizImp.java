@@ -45,5 +45,11 @@ public class UserBizImp implements UserBiz {
 	@Override
 	public List getAllinMyCommunity(User u) {
 		return userDAO.findByProperty("community.communityno", u.getCommunity().getCommunityno());
+	}
+	@Override
+	public void register(User user) {
+		user.setIsAdmin(false);
+		user.setImg(User.DEFAULT_IMG);
+		save(user);
 	}	
 }

@@ -17,11 +17,18 @@ public class BreadCrumbInterceptor extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation ai) throws Exception {
 		ActionContext ctx = ai.getInvocationContext();
-		Map<String, Object > session = ctx.getSession();
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String ua = request.getHeader("User-Agent");
+		if(ua.indexOf("WebKit")==-1||ua.contains("MSIE")){
+			//非webkit内核，转发到提示页
+  			return "browser";
+		}
 		
+		Map<String, Object > session = ctx.getSession();
 		Map<String,String> wordMap = new HashMap<String,String>();
 		wordMap.put("SmartZone", "首页");
-		wordMap.put("notice", "公告");
+		wordMap.put("notice", "信息中心");
 		wordMap.put("repair", "报修");
 		wordMap.put("feedback", "留言");
 		wordMap.put("bbs", "左邻右里");
@@ -31,7 +38,6 @@ public class BreadCrumbInterceptor extends AbstractInterceptor {
 		wordMap.put("store", "附近商家");
 		
 		
-		HttpServletRequest request = ServletActionContext.getRequest();
 		String r = request.getRequestURI();
 		String words[] = r.split("/");
 		ArrayList<BreadCrumb> urls= new ArrayList<BreadCrumb>();

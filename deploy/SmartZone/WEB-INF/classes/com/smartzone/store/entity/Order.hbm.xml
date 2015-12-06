@@ -21,11 +21,6 @@
         <property name="price" type="java.lang.Double">
             <column name="price"/>
         </property>
-        <property name="comment" type="java.lang.String">
-            <column name="comment" length="200">
-                <comment>买家留言</comment>
-            </column>
-        </property>
         <property name="state" type="java.lang.Short">
             <column name="state">
                 <comment>未付款，已付款，已成交</comment>

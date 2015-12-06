@@ -10,6 +10,9 @@ public class Bill implements java.io.Serializable {
 
 	// Fields
 
+	public static final Integer STATE_PAYED = 0;
+	public static final Integer STATE_SENT = 1;
+	public static final Integer STATE_ARRIVED = 2;
 	private Integer bid;
 	private Item item;
 	private Integer sid;

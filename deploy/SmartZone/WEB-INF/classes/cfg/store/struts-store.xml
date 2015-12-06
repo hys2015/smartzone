@@ -218,4 +218,16 @@
     		<result>/WEB-INF/jsp/store/comment/success.jsp</result>
     	</action>
     </package>
+    
+    <package name="bill" namespace="/store/bill" extends="store">
+    	<action name="mybills" class="billAction" method="mybills">
+    		<result>/WEB-INF/jsp/store/bill/mybills.jsp</result>
+    	</action>
+    	<action name="sent" class="billAction" method="sent">
+    		<result type="redirect">mybills?shop.sid=${bill.sid}</result>
+    	</action>
+    	<action name="arrived" class="billAction" method="arrived">
+    		<result type="redirect">mybills?shop.sid=${bill.sid}</result>
+    	</action>
+    </package>
 </struts>

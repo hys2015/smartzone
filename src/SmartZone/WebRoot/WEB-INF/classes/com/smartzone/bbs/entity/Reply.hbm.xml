@@ -17,7 +17,7 @@
             <column name="user_id" />
         </many-to-one>
         <property name="replyContent" type="java.lang.String">
-            <column name="reply_content" length="200" not-null="true" />
+            <column name="reply_content" length="2000" not-null="true" />
         </property>
         <property name="replyCreatetime" type="java.sql.Timestamp">
             <column name="reply_createtime" length="19" not-null="true" />

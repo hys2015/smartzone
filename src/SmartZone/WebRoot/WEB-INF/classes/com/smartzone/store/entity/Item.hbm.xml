@@ -16,6 +16,9 @@
         <property name="quantity" type="java.lang.Integer">
             <column name="quantity" />
         </property>
+        <property name="comment" type="java.lang.String">
+            <column name="comment" />
+        </property>
         <many-to-one name="Order" class="com.smartzone.store.entity.Order">
         	<column name="oid"></column>
         </many-to-one>

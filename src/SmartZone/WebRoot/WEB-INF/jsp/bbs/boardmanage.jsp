@@ -81,12 +81,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="boardName">
 							<s:property value="boardName"/>
 						</span>
+						<s:if test="postCount">
+						<span class="label label-danger">
+							<s:property value="postCount"/>
+						</span>
+						</s:if>
 						<s:url var="delURL" action="deleteBoard" namespace="/bbs">
 							<s:param name="board.boardId" value="boardId"></s:param>
 						</s:url>
 						<span class="text-right pull-right">
 						<a class="text update" href="javasript:void(0)">修改</a>
-						<a class="text-danger delete" href="${delURL }">删除</a>
+						<s:if test="postCount < 1">
+							<a class="text-danger delete" href="${delURL }">删除</a>
+						</s:if>
+						<s:else>
+							<small class="text-muted">
+							板块内无内容时才可删除
+							</small>
+						</s:else>
 						</span>
 						<p>
 						<small class="text-muted">

@@ -119,8 +119,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</form>
 					</div>
 				</div><!-- panel -->
+				<div class="text-right">
+				还没账号？
+					<s:a action="toRegister" namespace="/user">
+						快速注册
+					</s:a>
+				</div>
 			</div>
-		</div>
+		</div><!-- row -->
 	</div>
   </body>
   <s:include value="/foot.html"></s:include>

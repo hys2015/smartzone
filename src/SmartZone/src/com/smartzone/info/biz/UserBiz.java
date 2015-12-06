@@ -14,4 +14,6 @@ public interface UserBiz {
 	public void save(User u);
 
 	public List getAllinMyCommunity(User u);
+
+	public void register(User user);
 }

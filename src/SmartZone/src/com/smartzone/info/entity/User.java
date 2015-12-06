@@ -11,6 +11,7 @@ public class User implements java.io.Serializable {
 
 	// Fields
 
+	public static final String DEFAULT_IMG = "/SmartZone/upload/img/1.jpg";
 	private String username;
 	private Community community;
 	private String userpwd;

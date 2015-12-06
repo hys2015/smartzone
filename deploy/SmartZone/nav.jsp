@@ -1,5 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
+<head>
+	<script type="text/javascript">
+		$(function(){
+			$("li.community").tooltip();
+		})
+	</script>
+</head>
+
 <nav class="navbar navbar-default navbar-static-top no-border">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -22,7 +31,7 @@
 			
 			<ul class="nav navbar-nav">
 				<s:if test="#session.logindata != null">
-					<li>
+					<li class="community" data-toggle="tooltip" data-placement="bottom" title='${logindata.obj.community.communityaddr }'>
 						<a>
 						${logindata.obj.community.communityname }
 						</a>

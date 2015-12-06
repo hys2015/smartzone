@@ -36,10 +36,15 @@
 				<div class="form-group">
 					<label class="control-label">板块</label>
 					<div class="dropdown">
-					  <input id="dropdown-input" type="hidden" name="seriesId" value="${series[0].seriesId }">
+						<s:if test="#request.notice != null">
+							<s:set var="seriesId" >${notice.series.seriesId }</s:set>
+						</s:if>
+						<s:else>
+							<s:set var="seriesId" value="#request.series[0].seriesId"></s:set>
+						</s:else>
+					  <input id="dropdown-input" type="hidden" name="seriesId" value="${seriesId }">
 					  <button value="1" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					        <span>
-					        	${series[0].seriesName}
+					        <span class="seriesName">
 					        </span>
 					    <span class="caret"></span>
 					  </button>
@@ -74,6 +79,10 @@
 	});
 
 	$(function(){
+		var id = $("input[name='seriesId']").val();
+		var seletor = ".dropdown-menu a[data="+id+"]";
+		var seriesName = $(seletor.toString()).text().trim();
+		$("span.seriesName").text(seriesName);
 		$(".dropdown-menu > li").bind("click",function(){
 			var o = $(this).children();
 			$("#dropdownMenu1 > span:eq(0)").html(o.text());

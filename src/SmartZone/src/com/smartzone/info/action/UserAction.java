@@ -126,6 +126,23 @@ public class UserAction extends ActionSupport implements RequestAware,SessionAwa
 		return SUCCESS;
 	}
 	
+	public String toRegister(){
+		List list = commBiz.findAll();
+		request.put("communities", list);
+		return SUCCESS;
+	}
+	
+	public String register(){
+		if(user == null || user.getCommunity().getCommunityno() == null){
+			System.out.println("user register user == null || user.cid == null");
+			return ERROR;
+		}
+		Community comm = commBiz.findByCommunityNo(user.getCommunity().getCommunityno());
+		user.setCommunity(comm);
+		userBiz.register(user);
+		return SUCCESS;
+	}
+	
 	public User getUser() {
 		return user;
 	}

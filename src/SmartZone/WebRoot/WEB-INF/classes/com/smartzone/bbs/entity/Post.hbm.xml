@@ -32,7 +32,7 @@
             <column name="post_readtimes" not-null="true" />
         </property>
         <property name="postContent" type="java.lang.String">
-            <column name="post_content" length="1000" />
+            <column name="post_content" length="2000" />
         </property>
         <property name="postReplytimes" type="java.lang.Integer">
             <column name="post_replytimes" not-null="true" />

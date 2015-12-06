@@ -6,6 +6,7 @@ import com.smartzone.store.biz.BillBiz;
 import com.smartzone.store.dao.BillDAO;
 import com.smartzone.store.entity.Bill;
 import com.smartzone.store.entity.Item;
+import com.smartzone.store.entity.Shop;
 
 public class BillBizImp implements BillBiz {
 	private BillDAO billDAO;
@@ -13,10 +14,6 @@ public class BillBizImp implements BillBiz {
 	/* (non-Javadoc)
 	 * @see com.smartzone.store.biz.imp.BillBiz#findAll()
 	 */
-	@Override
-	public List findAll(){
-		return billDAO.findAll();
-	}
 	
 	public BillDAO getBillDAO() {
 		return billDAO;
@@ -27,6 +24,11 @@ public class BillBizImp implements BillBiz {
 	}
 
 	@Override
+	public List findAll(){
+		return billDAO.findAll();
+	}
+	
+	@Override
 	public Integer newBill(Bill bill) {
 		bill.setState(0);
 		double price = 0;
@@ -35,5 +37,26 @@ public class BillBizImp implements BillBiz {
 		bill.setPrice(price);
 		int bid = billDAO.save(bill);
 		return bid;
+	}
+
+	@Override
+	public List findShopBills(Shop shop) {
+		return billDAO.findByProperty("sid", shop.getSid());
+	}
+
+	@Override
+	public Bill findById(Integer bid) {
+		return billDAO.findById(bid);
+	}
+
+	@Override
+	public void sentBill(Bill bill) {
+		bill.setState(Bill.STATE_SENT);
+		billDAO.save(bill);
+	}
+	@Override
+	public void arrivedBill(Bill bill) {
+		bill.setState(Bill.STATE_ARRIVED);
+		billDAO.save(bill);
 	}
 }

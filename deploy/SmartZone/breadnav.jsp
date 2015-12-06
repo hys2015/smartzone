@@ -9,6 +9,19 @@
 			</a>
 		</li>
 	</s:iterator>
+	<s:if test="shop != null">
+		<li>
+			<s:a action="detail" namespace="/store">
+				<s:param name="shop.sid" value="shop.sid"/>
+				<s:if test="shop.sname == null">
+					商家
+				</s:if>
+				<s:else>
+					<s:property value="shop.sname"/>
+				</s:else>
+			</s:a>
+		</li>
+	</s:if>
 	<s:if test="category != null">
 		<li>
 			<s:a action="detail" namespace="/store">

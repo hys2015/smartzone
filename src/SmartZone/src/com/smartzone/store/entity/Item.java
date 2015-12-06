@@ -14,7 +14,8 @@ public class Item implements java.io.Serializable {
 	private Good good;
 	private Integer quantity;
 	private Order order;
-
+	private String comment;
+	
 	// Constructors
 
 	/** default constructor */
@@ -56,6 +57,16 @@ public class Item implements java.io.Serializable {
 
 	public void setGood(Good good) {
 		this.good = good;
+	}
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

@@ -75,6 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<s:a cssClass="btn btn-default" action="goodManage" namespace="/store/goods">
 								<s:param name="shop.sid" value="shop.sid"></s:param>
 								管理商品</s:a>
+							<s:a cssClass="btn btn-default" action="mybills" namespace="/store/bill">
+								<s:param name="shop.sid" value="shop.sid"></s:param>
+								查看账单</s:a>
 						</span>
 					</s:if>
 				</h2>

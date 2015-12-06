@@ -50,6 +50,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<span class="pull-right">
+								<s:a action="mybills" namespace="/store/bill">
+									<s:param name="shop.sid" value="sid"></s:param>
+									查看账单
+								</s:a>
+								|
 								<s:a action="goodManage" namespace="/store/goods">
 									<s:param name="shop.sid" value="sid"></s:param>
 									商品管理</s:a>
