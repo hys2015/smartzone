@@ -34,6 +34,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</span>
 				</h2>
 				<hr>
+				<s:if test="#session.message != null">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<s:property value="#session.message"/>
+						<%session.removeAttribute("message"); %>
+					</div>
+				</s:if>
 				<s:if test="#request.shops.size < 1">
 					<p class="text-center text-muted">你还没有店铺，可以
 						<a class="btn btn-default" href="${toAddURL}">申请开店</a>
@@ -57,12 +64,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							店铺编号：
 							<s:property value="sid"/>
 							店铺名称:
-							<s:property value="sname"/>
-							<s:if test="visible == 0 ">
-								<span class="label label-default">不可见</span>
+							<s:if test="visible == 1">
+								<s:a action="detail" namespace="/store">
+									<s:param name="shop.sid" value="sid"></s:param>
+									<s:property value="sname"/>
+								</s:a>
+															
 							</s:if>
 							<s:else>
-								<span class="label label-success">可见</span>
+								<s:property value="sname"/>
+							</s:else>
+							<s:if test="visible == 0 ">
+								<span class="label label-default">未审核</span>
+							</s:if>
+							<s:else>
+								<span class="label label-success">已审核</span>
 							</s:else>
 						</div>
 						<div class="panel-body">

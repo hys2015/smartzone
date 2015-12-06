@@ -73,7 +73,11 @@
 			<ref bean="ShopBiz"/>
 		</property>
 	</bean>
-	
+	<bean id="billAction" class="com.smartzone.store.action.BillAction" scope="prototype">
+		<property name="billBiz">
+			<ref bean="BillBiz"/>
+		</property>
+	</bean>
 	
 	<!-- line 
 	  new bean
@@ -83,6 +87,16 @@
 		||
 	  old bean
 	-->
+	<bean id="BillDAO" class="com.smartzone.store.dao.imp.BillDAOImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BillBiz" class="com.smartzone.store.biz.imp.BillBizImp">
+		<property name="billDAO">
+			<ref bean="BillDAO" />
+		</property>
+	</bean>
 	<bean id="CommentDAO"
 		class="com.smartzone.store.dao.imp.CommentDAOImp">
 		<property name="sessionFactory">
@@ -125,6 +139,9 @@
 		</property>
 		<property name="goodDAO">
 			<ref bean="GoodDAO" />
+		</property>
+		<property name="billBiz">
+			<ref bean="BillBiz" />
 		</property>
 	</bean>
 	

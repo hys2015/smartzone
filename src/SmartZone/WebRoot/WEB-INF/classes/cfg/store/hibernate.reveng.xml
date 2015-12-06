@@ -39,8 +39,14 @@
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-<table name="item" catalog="smartzone_store"
-	class="com.smartzone.store.entity.Item">
+	<table name="item" catalog="smartzone_store"
+		class="com.smartzone.store.entity.Item">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="bills" catalog="smartzone_store"
+	class="com.smartzone.store.entity.Bill">
 	<primary-key>
 		<generator class="native"></generator>
 	</primary-key>

@@ -17,6 +17,6 @@ public interface OrderBiz {
 
 	public void setUnvisible(Order findById);
 
-	public void payed(Integer oid);
+	public void payed(Order order);
 
 }

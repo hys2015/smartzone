@@ -68,6 +68,6 @@ public class Tag implements java.io.Serializable {
 
 	@Override
 	public int hashCode() {
-		return getTid().hashCode();
+		return getTid() == null ? 0 :getTid().hashCode();
 	}
 }

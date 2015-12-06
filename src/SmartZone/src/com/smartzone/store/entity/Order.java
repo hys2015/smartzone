@@ -25,6 +25,7 @@ public class Order implements java.io.Serializable {
 	private Recaddr recaddr;
 	private Double price;
 	private Boolean visible;
+	private String trxId;
 	private Set items = new HashSet(0);
 
 	// Constructors
@@ -139,6 +140,14 @@ public class Order implements java.io.Serializable {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getTrxId() {
+		return trxId;
+	}
+
+	public void setTrxId(String trxId) {
+		this.trxId = trxId;
 	}
 
 }

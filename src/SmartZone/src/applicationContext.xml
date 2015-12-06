@@ -85,7 +85,8 @@
 				</value>
 				<value>
 					com/smartzone/store/entity/Comment.hbm.xml
-				</value></list>
+				</value>
+				<value>com/smartzone/store/entity/Bill.hbm.xml</value></list>
 			</property>
 	</bean>
 	

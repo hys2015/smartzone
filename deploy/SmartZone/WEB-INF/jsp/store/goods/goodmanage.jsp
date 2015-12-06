@@ -109,9 +109,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<s:if test="category == null">
 			<div class="col-md-1">
-				<s:a cssClass="btn btn-default" action="toAdd" namespace="/store/goods">
-					<s:param name="shop.sid" value="shop.sid"></s:param>
-					新增商品</s:a>
+				<label>新增商品</label>
+				<s:if test="#request.categorys.size > 0">
+					<s:a cssClass="btn btn-default"	action="toAdd" namespace="/store/goods">
+						<s:param name="shop.sid" value="shop.sid"></s:param>
+						新增商品</s:a>
+				</s:if>
+				<s:else>
+					<b>
+					请先在左侧添加类别
+					</b>
+				</s:else>
 			</div>
 			</s:if>
 		</div>

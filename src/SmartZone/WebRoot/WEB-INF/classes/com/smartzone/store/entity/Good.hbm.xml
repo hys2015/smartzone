@@ -34,6 +34,9 @@
         <property name="onshelftime" type="java.sql.Timestamp">
             <column name="onshelftime" />
         </property>
+        <property name="soldcount" type="java.lang.Integer">
+            <column name="soldcount" />
+        </property>
         <list name="imgs" lazy="false" inverse="false" cascade="all-delete-orphan">
         	<key>
         		<column name="gid" not-null="true"></column>

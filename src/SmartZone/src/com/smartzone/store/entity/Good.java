@@ -24,6 +24,7 @@ public class Good implements java.io.Serializable {
 	private Integer quantity;
 	private Boolean visible;
 	private Timestamp onshelftime;
+	private Integer soldcount;
 	private List<GoodImg> imgs = new ArrayList<GoodImg>(0);
 
 	// Constructors
@@ -139,6 +140,14 @@ public class Good implements java.io.Serializable {
 
 	public void setOnshelftime(Timestamp onshelftime) {
 		this.onshelftime = onshelftime;
+	}
+
+	public Integer getSoldcount() {
+		return soldcount;
+	}
+
+	public void setSoldcount(Integer soldcount) {
+		this.soldcount = soldcount;
 	}
 
 }

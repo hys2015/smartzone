@@ -70,7 +70,10 @@ public class PayAction extends ActionSupport implements RequestAware {
 	
 	private void SetOrderPayed() {
 		Integer oid = Integer.parseInt(r6_Order);
-		orderBiz.payed(oid);
+		Order order = new Order();
+		order.setOid(oid);
+		order.setTrxId(r2_TrxId);
+		orderBiz.payed(order);
 	}
 
 	private String orderID ;       //获取订单号

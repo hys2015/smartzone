@@ -56,7 +56,10 @@
 						<s:property value="(nowprice/price*100).intValue()"/>折
 					</span>
 					<br>
+					<span class="text-muted">
 					库存:<s:property value="quantity"/>
+					销量:<s:property value="soldcount"/>
+					</span>
 				</div>
 			</div>
 		</div>

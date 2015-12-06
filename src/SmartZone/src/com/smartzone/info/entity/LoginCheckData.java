@@ -41,4 +41,7 @@ public class LoginCheckData {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+	public void clearCart() {
+		this.cart.clear();
+	}
 }

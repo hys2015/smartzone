@@ -53,5 +53,8 @@
         <property name="visible" type="java.lang.Boolean">
         	<column name="visible"></column>
         </property>
+        <property name="trxId" type="java.lang.String">
+        	<column name="trx_id"></column>
+        </property>
     </class>
 </hibernate-mapping>

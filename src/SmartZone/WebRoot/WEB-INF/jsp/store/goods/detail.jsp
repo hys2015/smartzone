@@ -146,7 +146,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					   <li role="presentation">
 					   		<a href="#comments" aria-controls="condofee" role="tab" data-toggle="tab">
 					   		<span class="glyphicon glyphicon-pencil"></span>
-					   		买家评论</a></li>
+					   		买家评论
+					   		<span class="text-muted">
+					   		(<s:property value="#request.comments.size"/>)
+					   		</span>
+					   		</a></li>
 					 </ul>
 					 <div class="tab-content">
 					 	<div role="tabpanel" class="tab-pane active" id="detail">

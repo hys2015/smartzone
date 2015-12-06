@@ -75,6 +75,9 @@ public class OrderAction extends ActionSupport implements RequestAware,
 		order.setItems(items);
 		Integer oid = orderBiz.add(order);
 		order.setOid(oid);
+		
+		//clear cart
+		LoginCheckData.getInstance(session).clearCart();
 		return SUCCESS;
 	}
 	

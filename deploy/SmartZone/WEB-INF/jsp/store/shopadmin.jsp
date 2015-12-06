@@ -85,6 +85,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							简介:
 								<s:property value="represent"/>
 							</p>
+							所属分类:
+							<s:if test="tags.size < 1">
+								<span class="text-muted">无分类</span>
+							</s:if>
+							<s:iterator value="tags">
+								<span class="label label-danger">
+									<s:property value="title"/>
+								</span>
+							</s:iterator>
 						</div>
 					</div>
 				</s:iterator>

@@ -81,6 +81,7 @@ public class ShopAction extends ActionSupport implements RequestAware,
 		User u = (User) LoginCheckData.getInstance(session).getObj();
 		shop.setUser(u);
 		shopBiz.add(shop);
+		session.put("message","信息成功提交，请等待审核");
 		return SUCCESS;
 	}
 	

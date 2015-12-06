@@ -46,25 +46,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>
 					订单号:
 					<s:property value="oid"/>
+					下单时间:
+					<s:date name="createtime" format="yyyy-MM-dd HH:mm:ss"/>
 					</p>
 					订单商品：
 					<s:iterator value="items">
 						<li class="list-group-item">
-							<span class='pull-right'>
-								<s:if test="#order.state == 1">
-									<s:a cssClass="btn btn-default" action="toAdd" namespace="/store/comments">
-										<s:param name="comment.gid" value="good.gid"></s:param>
-										评价晒单</s:a>
-								</s:if>
-							</span>
 							<div class="container-fluid">
-							
 							<div class="col-md-3">
+								<s:if test="good.imgs.size > 0">
 								<img class="img-responsive"
 									 alt="<s:property value='good.gname'/>"
 									 src='<s:property value='good.imgs[0].imgUrl'/>'>
+								</s:if>
+								<s:else>
+									<img class="img-responsive"
+									 alt="<s:property value='good.gname'/>"
+									 >
+								</s:else>
 							</div>
 							<div class="col-md-9">
+								<span class='pull-right'>
+								<s:if test="#order.state == 1">
+									<s:a cssClass="btn btn-primary" action="toAdd" namespace="/store/comments">
+										<s:param name="comment.gid" value="good.gid"></s:param>
+										评价晒单</s:a>
+								</s:if>
+								</span>
 								<p>
 									<s:a action="detail" namespace="/store">
 										<s:param name="shop.sid" value="good.category.shop.sid"></s:param>
@@ -122,11 +130,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class='text-success'>
 						已付款
 						</span>
+						<br>
+						<span class="h6">
+						付款时间:
+						<s:date name="paytime" format="yyyy-MM-dd HH:mm:ss"/>
+						<br>
+						交易号:
+						<s:property value="trxId"/>
+						</span>
 						</s:if>
 					<s:if test="state == 2">已评价</s:if>
 					</span>
 					</p>
 				</div>
+				<br>
 			</s:iterator>
 			</div>
 		</div>
