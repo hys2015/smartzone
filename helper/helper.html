@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Helper</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+
+			init();
+			$("input#in").bind("change",function(){
+				init();
+			})
+			$("input.score").bind("change",function(){
+				var total = $("input#total").val();
+				var ratio = $(this).val() / total;
+				ratio = parseFloat(ratio*100);
+				$(this).parent().find("input.ratio").val(ratio.toFixed(2));
+				
+				calcRest();
+
+			});
+			$("input.ratio").bind("change",function(){
+
+				var total = $("input#total").val();
+				var score = $(this).val()/100 * total;
+				$(this).parent().find("input.score").val(score.toFixed(2));
+
+				calcRest();
+
+			});
+		})
+
+		var init = function(){
+			var inputs = $("input.score");
+			var inScore = $("input#in").val();
+			var deedScore = inScore/10 * inputs.size();
+			$("input#total").val( deedScore);
+			$("input.score").val(0);
+			var total = $("input#total").val();
+			var defaultRatio = 1 / inputs.size();
+			$("input.ratio").val((defaultRatio * 100).toFixed(2));
+			$("input.score").val((total * defaultRatio).toFixed(2));
+			calcRest();
+		}
+
+		var calcRest = function(){
+			var total = $("input#total").val();
+			var sum = 0.0;
+			$("input.score").each(function(){
+				sum += parseFloat($(this).val());
+			})
+			$("span#rest").text(total - sum);
+			$("input#tScore").val(sum);
+
+			sum = 0.0;
+			$("input.ratio").each(function(){
+				sum += parseFloat($(this).val());
+			})
+			$("input#tRatio").val(sum)
+
+			checkSum();
+		}
+
+		var checkSum = function(){
+			var total = $("input#total").val();
+			var sum = 0.0;
+			$("input.score").each(function(){
+				sum += parseFloat($(this).val());
+			})
+			if(sum > total){
+				alert("总分数超出"+total);
+				return ;
+			}
+			sum = 0.0;
+			$("input.ratio").each(function(){
+				sum += parseFloat($(this).val());
+			})
+			if(sum > 100){
+				alert("总比例超出100%");
+				return ;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div>
+		总分(10人)
+		<input id="in" type="number" value="700">
+		实际
+		<input id="total" type="number">
+		剩余分数
+		<span id="rest"></span>
+	</div>
+	<div>
+		经理
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		秘书
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		财务
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		规划
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		技术1
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		技术2
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		技术3
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		质量
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		市场
+		分数
+		<input class="score" type="number" >
+		比例
+		<input class="ratio" type="number" step="1" max="100" min="0">%
+	</div>
+	<div>
+		分数小计
+		<input id="tScore" type="number" readonly></input>		
+		比例小计
+		<input id="tRatio" type="number" readonly></input>		
+	</div>
+</body>
+</html>
